@@ -1,19 +1,16 @@
 
-
 div
 {
 font:100% normal Verdana,sans-serif; 
 margin:0 auto;
 width:500px;
-background:gray;
+background:#D3C8BC;
 position:center;
 top:50px;
-border:1px solid#262626;
-color:red;
+border:1px solid black;
+color:#8D0F0F;
 font-size:12px;
 padding:5px 0 5px 5px;
-border-bottom:1px solid#161712;
-border-top:1px solid#161712;
 text-align: center;
-line-height: 200%;
+line-height: 24px;
 }
