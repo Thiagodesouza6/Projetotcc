@@ -17,6 +17,12 @@ o cabeçalho precisa estar com position: relative.*/
 header{
     position: relative;
 }
+header h1{/*alteraçao para mobile*/
+    text-align: center;
+}
+header h1 img{/*alteraçao para mobile*/
+    max-width: 50%;
+}
 
 /*A sacola também deve estar posicionada a direita e no topo. Use position , top e right para
 conseguir esse comportamento.*/
@@ -31,14 +37,15 @@ conseguir esse comportamento.*/
     width:	140px;	
     position: absolute;
     top: 0;
-    right: 0;
+	right: 0;
+	display: none;/*alteraçao para mobile*/
 }
 
 .menu-opcoes
 {
-    position:absolute;
-    bottom: 0;
-    right: 0;
+    position:static;/*alteraçao para mobile*/
+	text-align: center;/*alteraçao para mobile*/
+    
 }
 
 .menu-opcoes ul	
@@ -48,8 +55,8 @@ conseguir esse comportamento.*/
 
 /*Transformar nosso menu em vertical e ajustar espaçamentos básicos.*/
 .menu-opcoes ul li{
-    display: inline;
-    margin-left: 20px;
+    display: inline-block;/*alteraçao para mobile*/
+    margin: 5px;/*alteraçao para mobile*/
 }
 
 .menu-opcoes a
@@ -72,8 +79,17 @@ Foram aplicadas algumas regras de margens e de tamanhos*/
 
 .busca h2,
 .busca form,
-.menu-departamentos h2 {
+.menu-departamentos h2 
+{
     margin: 10px;
+}
+/*alteraçao para mobile*/
+.busca,
+.menu-departamentos,
+.banner-destaque img
+{
+	margin-right: 0;
+	width: 100%;
 }
 
 .menu-departamentos li {
@@ -123,9 +139,8 @@ Conseguimos isso com a propriedade clear */
 }
 
 .painel {
-	margin: 10px 0;
-	padding: 10px;
-	width: 445px;
+	
+	width:auto;
 }
 
 .novidades {
@@ -138,20 +153,23 @@ Conseguimos isso com a propriedade clear */
 	background-color: #dcdcf5;
 }
 
+
 .painel li {
 	display: inline-block;
 	vertical-align: top;
-	width: 140px;
-
+	width: 30%;
 	margin: 2px;
 	padding-bottom: 10px;
+}
+.painel img
+{
+	width: 100%;
 }
 
 .painel h2 {
 	font-size: 24px;
 	font-weight: bold;
 	text-transform: uppercase;
-
 	margin-bottom: 10px;
 }
 
@@ -334,4 +352,49 @@ Seu tamanho não conta para calcular o tamanho do elemento pai*/
 /*Posicione o menu à direita e embaixo no header. Use position: absolute para isso. E não
 esqueça: se queremos posicioná-lo absolutamente com relação ao cabeçalho, o cabeçalho precisa estar
 com position: relative .*/
+/*alteraçao para mobile*/
+@media(max-width:939px){
+	/* adicionar aqui os novos estilos para mobile*/
+	.container{
+		width:96%;
+	}
+	@media(min-width:480px)
+	{
+		header h1{
+			margin:5px 0;
+		}
+		.menu-departamentos{
+			 padding-bottom:10px;
+			 margin-bottom:10px;
+		}
+		.menu-departamentos nav>ul{
+			column-count: 2;
+	   }
+	}
+	@media(min-width: 720px)
+	{
+		header h1{
+			text-align: left;
+		}
+		.menu-opcoes{
+			position: absolute;
+		}
+		.sacola{
+			display: block;
+		}
+		.painel li{
+			width: 15%;
+		}
+		.busca,.menu-departamentos{
+			margin-right: 1%;
+			width: 30%;
+		}
+		.menu-departamentos nav>ul{
+			column-count: 1;
+		}
+		.banner-destaque img{
+			width:69%
+		}
+	}
+}
 
