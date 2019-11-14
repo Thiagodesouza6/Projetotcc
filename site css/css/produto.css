@@ -119,5 +119,5 @@ suavemente. adicione o seletor no início de produto.css*/
 uma borda mais leve, adicionar também no inicio de produto.css*/
 .cores label:hover:after
 {
-    border: 6px solid 
+    border: 6px solid;
 }
