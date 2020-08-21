@@ -4,32 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sobre a Mirror Fashion</title>
-      <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/estilos.css">
+    <title>Produto</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/estilos.css">
+
         <link rel="stylesheet" href="css/produto.css">
+   
 </head>
 <body>
-    <header class="container">
-        <h1><img src="img/logo.png" alt="Logo da Mirror Fashion"></h1>
-        <p class="sacola">Nenhum item na sacola de compras</p>
-        <nav class="menu-opcoes">
-            <ul>
-                <li><a href="#">Sua Conta</a></li>
-                <li><a href="#">Lista de Desejos</a></li>
-                <li><a href="#">Cartão Fidelidade</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="#">Ajuda</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="produto">
+        <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-purple" >
+                <div class="container">
+                  <a class="navbar-brand" href="index.html"><img src="img/logo-rodape.png" width="100px" height="45px"alt="Logo da Mirror Fashion"></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                          <li class="nav-item dropdown" id="teste">
+                                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Sua Conta
+                                  </a>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Cadastrar</a>
+                                    <a class="dropdown-item" href="#">Entrar</a>
+                                
+                                  </div>
+                                </li>
+                                <li class="nav-item">
+                                      <a class="nav-link" href="#">Lista de Desejos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                          <a class="nav-link" href="#">Cartão Fidelidade</a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" href="sobre.html">Sobre</a>
+                        </li>
+                                                                            
+                      
+                      
+                    </ul>
+                    
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Digite o que você procura" aria-label="Search">
+                      <button class="btn btn-dark my-2 my-sm-0" type="submit">Pesquisar</button>
+                    </form>
+                  </div>
+              </div>
+                </nav>
+    
+    <div class="produto container">
         <h1>Fuzzy Cardigan</h1>
         <p>por apenas R$ 129,90</p>
         <form>
             <fieldset class="cores">
                 <legend>Escolha a cor:</legend>
                 <input type="radio" name="cor" value="verde" id="verde" checked>
+                
                 <label for="verde">
                     <img src="img/produtos/foto1-verde.png" alt="Produto na cor verde">
                 </label>
@@ -42,7 +76,8 @@
                         <img src="img/produtos/foto1-azul.png" alt="Produto na cor azul">
                 </label>
             </fieldset>
-            <button class="comprar">Comprar</button>
+            <br>
+            <button type="button" class="btn btn-success btn-lg"><a href="checkout.html">Comprar</a></button>
         </form>
         <div class="detalhes">
             <h2>Detalhes do produto</h2>
@@ -87,6 +122,13 @@
                 <li><a href="http://plus.google.com/mirrorfashion">Google+</a></li>
             </ul>
         </div>
+        <div class="img-zoom-container">
+                <img id="myimage" src="img/produtos/foto10-rosa.png" width="300" height="240" alt="Girl">
+                <div id="myresult" class="img-zoom-result"></div>
+              </div>
+              <script>
+imageZoom("myimage", "myresult");
+</script>
     </footer>
 </body>
 </html>

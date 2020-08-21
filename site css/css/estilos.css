@@ -1,3 +1,60 @@
+
+* {box-sizing: border-box;}
+
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: relative;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 40px;
+  height: 40px;
+}
+
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  /*set the size of the result div:*/
+  width: 300px;
+  height: 300px;
+}
+.inner{
+	overflow: hidden;
+}
+.inner img{
+	transition: all 1.5s ease;
+}
+.inner:hover img{
+
+	transform: scale(1.125);
+}
+
+.paineis{
+ margin-top:8%;
+}
+.bg-purple{
+	background-color: darkslateblue;
+}
+
+ol li{
+	opacity: 0.5;
+}
+ol li:hover {
+	transform: scale(1.125); 
+	opacity:1;
+  }
+ol{
+	text-align: center;
+}
+/*#teste:hover{
+	background-color: yellow;
+	
+}*/
+h1{
+	text-align: center;
+}
+
 body
 {
     color:	#333333;
@@ -8,7 +65,7 @@ body
 .container
 {
     margin: 0 auto;
-    width: 940px;
+  
 }
 
 /*Posicione o menu à direita e embaixo no header. Use position: absolute para isso. E não
