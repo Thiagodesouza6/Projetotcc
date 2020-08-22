@@ -23,11 +23,11 @@
 	overflow: hidden;
 }
 .inner img{
-	transition: all 1.5s ease;
+	transition: all 1.9s ease;
 }
 .inner:hover img{
 
-	transform: scale(1.125);
+	transform: scale(1.110);
 }
 
 .paineis{
