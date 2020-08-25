@@ -1,3 +1,27 @@
+
+.hoverbar:hover{
+	background-color: #520580;
+	transition: all 0.4s ease;
+}
+.margem{
+	margin: 0;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) 
+}
+
+.centralizar{
+	align-items: center;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+margin-left:870px;
+	
+}
 /* Styles for wrapping the search box */
 .input-group{
 	width: 40%;
@@ -8,11 +32,7 @@
 }
 
 /* Bootstrap 4 text input with search icon */
-.form-control {
-	padding-left: 2.375rem;
-	
-    
-}
+
 
   .form-control-feedback {
     position: absolute;
@@ -25,12 +45,15 @@
     pointer-events: none;
     color: rgb(22, 7, 22);
 }
+.bg-custom-3{
+	background-color: #818181
+}
 .bg-custom-1 {
-	background-color: #85144b;
+	background-color: #ffffff;
   }
   
   .bg-custom-2 {
-  background-image: linear-gradient(15deg, #511161 0%, #9b85be 100%);
+  background-image: linear-gradient(1deg, #2d0931 0%, #7402a8 100%);
   }
 .topnav {
 	overflow: hidden;
@@ -142,15 +165,7 @@ ol{
 	text-align: center;
 }
 
-.teste{
 
-	align-items: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-
-}
 h1{
 	text-align: center;
 }
