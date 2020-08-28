@@ -15,99 +15,13 @@
     </head>
     <body> 
 			
-            <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light  bg-light" >
-		  
-                    <a class="navbar-brand" href="index.html"><img src="img/logo.png" width="110px" height="45px"alt="Logo da Mirror Fashion"></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                
-          
-                        
-                        
-                    
-                
-                        
-                    <div class="input-group margem ">
-                            <input type="text" class="form-control" placeholder="Digite o que você procura">
-                            <div class="input-group-append">
-                              <button class="btn btn-dark" type="button">
-                                   <i class="fa fa-search"></i>
-                              </button>
-                            </div>
-                          </div>
-                        
-                      
-                    <div class="collapse navbar-collapse " id="navbarSupportedContent " >
-                            
-                      <ul class="navbar-nav centralizar  " >
-        
-                            
-                        
-                                                                              
-                          <li class="nav-item dropdown px-2  " >
-                                <a class="nav-link dropdown-toggle  text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-user"></i> <p >Sua conta</p>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="#">Cadastrar</a>
-                                  <a class="dropdown-item" href="#">Entrar</a>
-                              
-                                </div>
-                              </li>
-                             
-                              <li class="nav-item ">
-                                    <a class="nav-link "  href="#">Lista de Desejos</a>
-                                  </li>
-                            
-                                      <li class="nav-item">
-                                        <a class="nav-link text-center" href="sobre.html">Sobre</a>
-                        
-                              
-                      </li>	
-                        
-                      </ul>
-                     
-                        
-                
-                </div>
-                  </nav>
-              <!--  <h1><a href="index.html"> <img src="img/logo.png" alt="Logo da Mirror Fashion"></a></h1>
-             
-            <header class="container">
-              
-                        <p class="sacola">
-                                Nenhum item na sacola de compras
-                            </p>
-        
-                   
-                   
-                </header>
-        -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-custom-2 py-4">
-          
-        
-          <div class="collapse navbar-collapse margem "  id="navbarSupportedContent">
-            <ul class="navbar-nav container  ">
-                    <li class="nav-item hoverbar px-3 " >
-                            <a class="nav-link" href="#">Link</a>
-                          </li>
-              
-                          <li class="nav-item hoverbar px-3  ">
-                                <a class="nav-link" href="#">Link</a>
-                              </li>
-                              <li class="nav-item hoverbar px-3 ">
-                                    <a class="nav-link" href="#">Link</a>
-                                  </li>
-            </ul>
-           
-          </div>
-        </nav>
+    <?php include('header.php');
+ ?>
 <br>
 <div class="container paineis my-5">
         <div class="row">
                 <div class="col-2">
-               <nav id="navbarVertical " class="navbar  navbar-dark bg-custom-2">
+               <nav id="navbarVertical " class="navbar  navbar-dark ">
                    <nav class="nav nav-pills  flex-column">
                         <ul class="nav nav-pills    "id="pills-nav"role="tablist">
                                 <li class="nav-item px-2 " >
@@ -133,26 +47,13 @@
 <div class="col-sm">
         <section class="painel novidades"><br>
           
-                   
-                         <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+           
                     
                     
                  
             <div class="card-group ">
                     <div class="card inner my-2">
-                        <a href="produtos.html"><img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
+                        <a href="produtos.php"><img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title lead">Card title</h5>
                         <p class="card-text lead">This is a wider card with s.</p>
@@ -160,7 +61,7 @@
                       </div>
                     </div>
                     <div class="card inner my-2">
-                        <a href="produtos.html"> <img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
+                        <a href="produtos.php"> <img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title lead">Card title</h5>
                         <p class="card-text lead">This card has supporting text below t.</p>
@@ -168,7 +69,7 @@
                       </div>
                     </div>
                     <div class="card inner my-2">
-                        <a href="produtos.html">		
+                        <a href="produtos.php">		
                       <img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title lead">Fuzz Cardigan</h5>
@@ -181,7 +82,7 @@
     <ol>
         <li>
             
-            <a href="produtos.html">
+            <a href="produtos.php">
                 <figure>
                     <img src="img/produtos/miniatura1.png">
                     <figcaption>Fuzz Cardigan por R$ 129,90</figcaption>
@@ -343,17 +244,7 @@
 <br>
 
             
-
-		<footer>
-			<div class="container">
-				<img src="img/logo-rodape.png" alt="Logo Mirror Fashion"/>
-
-				<ul class="social">
-					<li><a href="http://facebook.com/mirrorfashion">Facebook</a></li>
-					<li><a href="http://twitter.com/mirrorfashion">Twitter</a></li>
-					<li><a href="http://plus.google.com/mirrorfashion">Google+</a></li>
-				</ul>
-			</div>
-		</footer>
+<?php include('footer.php');?>
+		
     </body>
 </html>
