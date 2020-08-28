@@ -1,6 +1,68 @@
+.opacitytransform{
+	
+	opacity: 1;
+	transition: all 0.4s ease;
+	
+}
+.opacitytransform:hover{
+	opacity: 0.7;
+	transform: scale(1.010);
+	box-shadow: 5px 2px 2px rgb(122, 122, 122);
+}
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
+.slider .card{
+  flex: 1;
+  margin: 0 10px;
+  background: #fff;
+}
+.slider .card .img{
+  height: 200px;
+  width: 100%;
+}
+.slider .card .img img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.slider .card .content{
+  padding: 10px 20px;
+}
+.card .content .title{
+  font-size: 25px;
+  font-weight: 600;
+}
+.card .content .sub-title{
+  font-size: 20px;
+  font-weight: 600;
+  color: #e74c3c;
+  line-height: 20px;
+}
+.card .content p{
+  text-align: justify;
+  margin: 10px 0;
+}
+.card .content .btn{
+  display: block;
+  text-align: left;
+  margin: 10px 0;
+}
+.card .content .btn button{
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.card .content .btn button:hover{
+  transform: scale(0.9);
+}
 .hoverbar:hover{
-	background-color: #4e089e;
+	background-color: #0faae7;
 	transition: all 0.4s ease;
 	
 }
@@ -141,11 +203,11 @@ margin-left:870px;
 	overflow: hidden;
 }
 .inner img{
-	transition: all 1.9s ease;
+	transition: all 0.6s ease;
 }
 .inner:hover img{
-
-	transform: scale(1.110);
+	opacity:0.8;
+	transform: scale(1.010);
 }
 
 .paineis{
@@ -173,7 +235,7 @@ h1{
 
 body
 {
-    color:	#333333;
+	background: #f2f2f2;
     font-family: "Lucida Sans Unicode",	"Lucida	Grande", sans-serif;
 } 
 
@@ -313,16 +375,16 @@ Conseguimos isso com a propriedade clear */
 
 .painel {
 	
-	width:auto;
+	width:100%;
 }
 
 .novidades {
-	float: left;
+
 	background-color: #f5dcdc;
 }
 
 .mais-vendidos {
-	float: right;
+	
 	background-color: #dcdcf5;
 }
 
@@ -406,13 +468,12 @@ footer .container {
 }
 
 .novidades {
-	background-color: #f5dcdc;
-	background: linear-gradient(#f5dcdc, #bebef4);
+	background-color: #ffffff;
 }
 
 .mais-vendidos {
-	background: #dcdcf5;
-	background: linear-gradient(#dcdcf5, #f4bebe);
+	background-color: #ffffff;
+
 }
 
 .painel button {
