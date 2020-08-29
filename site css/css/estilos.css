@@ -1,3 +1,4 @@
+
 .opacitytransform{
 	
 	opacity: 1;
@@ -231,6 +232,7 @@ ol{
 
 h1{
 	text-align: center;
+	
 }
 
 body
@@ -380,7 +382,7 @@ Conseguimos isso com a propriedade clear */
 
 .novidades {
 
-	background-color: #f5dcdc;
+	background-color: #e9c3c3;
 }
 
 .mais-vendidos {

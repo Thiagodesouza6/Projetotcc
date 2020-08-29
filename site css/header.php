@@ -1,4 +1,5 @@
 <html>
+
 <body>
 
     <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-custom-1" >
@@ -36,7 +37,7 @@
                           <i class="fa fa-user"></i> <p >Sua conta</p>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Cadastrar</a>
+                        <a class="dropdown-item" href="cadastrar.php">Cadastrar</a>
                         <a class="dropdown-item" href="#">Entrar</a>
                     
                       </div>
