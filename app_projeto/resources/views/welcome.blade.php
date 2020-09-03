@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 ?>
 <!DOCTYPE html>
@@ -7,21 +7,19 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<title>Mirror Fashion</title>
-		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-		<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-      <link rel="stylesheet" href="css/reset.css">
-	  <link rel="stylesheet" href="css/estilos.css">
+        <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+   
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+        <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet"> 
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	  <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>-->
-	  <script src="js/owl.carousel.min.js"></script>
-	  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
- font-family: 'Nunito', sans-serif;
 	 
     </head>
-    <body > <?php include('header.php');
- ?>
+    <body >@include('inc.header')
 			
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
@@ -88,7 +86,7 @@
 					<div class="slider owl-carousel ">
 			
 				
-			<div class="card opacitytransform" height="250" ><a href="produtos.php">
+			<div class="card opacitytransform" height="250" ><a href="{{ url('/produtos') }}">
 			  <div class="img">
 	  <img src="img/produtos/miniatura1.png" alt="First slide"></div>
 	  <div class="content ">
@@ -98,7 +96,7 @@
 	  Fuzz Cardigan por R$ 129,90</p></a>
 	  </div>
 	  </div>
-	  <div class="card opacitytransform"><a href="produtos.php">
+	  <div class="card opacitytransform"><a href="{{ url('/produtos') }}">
 			  <div class="img">
 	  <img src="img/produtos/miniatura3.png"  alt="Second slide"></div>
 	  <div class="content">
@@ -108,7 +106,7 @@
 	  Fuzz Cardigan por R$ 129,90</p></a>
 	  </div>
 	  </div>
-	  <div class="card opacitytransform"><a href="produtos.php">
+	  <div class="card opacitytransform"><a href="{{ url('/produtos') }}">
 			  <div class="img">
 	  <img src="img/produtos/miniatura4.png"alt="Third slide"></div>
 	  <div class="content">
@@ -120,7 +118,7 @@
 				
 	  </div>
 	  </div>
-	  <div class="card opacitytransform"><a href="produtos.php">
+	  <div class="card opacitytransform"><a href="{{ url('/produtos') }}">
 			  <div class="img">
 	  <img src="img/produtos/miniatura2.png" alt=""></div>
 	  <div class="content ">
@@ -214,7 +212,7 @@
 			</section>
 		</div>
 		
-<?php include('footer.php');?>
+<footer>@include('inc.footer')</footer>
 		
     </body>
 </html>
