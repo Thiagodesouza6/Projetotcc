@@ -6,7 +6,7 @@
     <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
-		<title>Mirror Fashion</title>
+		<title>site teste</title>
         <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
    
@@ -29,13 +29,13 @@
 				</ol>
 				<div class="carousel-inner">
 				  <div class="carousel-item active">
-					<img class="d-block w-100" src="img/destaque-home.png" height="500"alt="First slide">
+					<img class="d-block w-100" src="img/banner.jpg" height="500"alt="First slide">
 				  </div>
 				  <div class="carousel-item">
-					<img class="d-block w-100" src="img/produtos/miniatura2.png"height="500" alt="Second slide">
+					<img class="d-block w-100" src="img/banner.jpg"height="500" alt="Second slide">
 				  </div>
 				  <div class="carousel-item">
-					<img class="d-block w-100" src="img/produtos/miniatura3.png"height="500" alt="Third slide">
+					<img class="d-block w-100" src="img/banner.jpg"height="500" alt="Third slide">
 				  </div>
 				</div>
 				
@@ -81,7 +81,7 @@
 		</div>-->	
 		<div class=" paineis my-5">
 				<section class="painel novidades"><br>
-					<h2 class="display-4 text-center lead">Novidades</h2>
+					<p class="display-4 text-center lead">Novidades</p>
 					<br>
 					<div class="slider owl-carousel ">
 			
@@ -146,7 +146,7 @@
 			</section>
 			<br> <br> <br> <br> <br> <br>
 			<section class="painel mais-vendidos">
-				<h2>Mais Vendidos</h2>
+				<p class="display-4 text-center">Mais Vendidos</p>
 				<div class="slider owl-carousel ">
 			
 				
@@ -212,7 +212,7 @@
 			</section>
 		</div>
 		
-<footer>@include('inc.footer')</footer>
+@include('inc.footer')
 		
     </body>
 </html>

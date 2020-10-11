@@ -1,6 +1,4 @@
-<?php
 
-?>
 <!DOCTYPE html>
 <html >
 <head>
@@ -18,65 +16,80 @@
    
 </head>
 <body>
-        @include('inc.header')<br><br>
-    
-    <div class="produto container">
-        <h1>Fuzzy Cardigan</h1>
-        <p>por apenas R$ 129,90</p>
-        <form>
-            <fieldset class="cores">
-                <legend>Escolha a cor:</legend>
-                <input type="radio" name="cor" value="verde" id="verde" checked>
-                
-                <label for="verde">
-                    <img src="img/produtos/foto1-verde.png" alt="Produto na cor verde">
-                </label>
-                <input type="radio" name="cor" value="rosa" id="rosa">
-                <label for="rosa">
-                    <img src="img/produtos/foto1-rosa.png" alt="Produto na cor rosa">
-                </label>
-                <input type="radio" name="cor" value="azul" id="azul">
-                <label for="azul">
-                        <img src="img/produtos/foto1-azul.png" alt="Produto na cor azul">
-                </label>
-            </fieldset>
-            <br>
-            <button type="button" class="btn btn-success btn-lg"><a href="checkout.php">Comprar</a></button>
+        @include('inc.header')<br><br><br><br>
+        <div class="row container">
+  <div class="col-sm-5 "> <img  src="../storage/{{$produto->image}}" class="formimagem"></div>
+  <div class="col-sm-6 detalhes ">  <h2 class="text-center ">{{$produto->nome}}</h2>
+     <p class="text-center ">{{$produto->valor}}R$</p>
+   
+    @if (Auth::check())
+    <form action="{{ route('carrinho.adicionar') }}" method="POST">   
+        <br>
+        <div class="d-flex justify-content-center">
+                {{ csrf_field() }}
+                <input type="hidden" name="id" value="{{ $produto->id }}">
+                <button class="btn btn-success" >Comprar</button>  
+     
+    </div>
+    </form>
+        @else
+        <form action="/login">
+            <div class="d-flex justify-content-center">
+            <input type="submit" class="btn btn-success mt-2" value="Comprar"> </div>
         </form>
-        <div class="detalhes">
-            <h2>Detalhes do produto</h2>
-            <p>Esse é o melhor casaco de Cardigã que você já viu. Excelente material
-                italiano com estampa desenhada pelos artesãos da comunidade de Krotor nas ilhas
-                gregas. Compre já e receba hoje mesmo pela nossa entrega a jato.
-            </p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Característica</th>
-                        <th>Detalhe</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Modelo</td>
-                        <td>Cardigã 7845</td>
-                    </tr>
-                    <tr>
-                        <td>Material</td>
-                        <td>Algodão e poliester</td>
-                    </tr>
-                    <tr>
-                        <td>Cores</td>
-                        <td>Azul, Rosa e Verde</td>
-                    </tr>
-                    <tr>
-                        <td>Lavagem</td>
-                        <td>Lavar a mão</td>
-                    </tr>
-                </tbody>
-            </table>
+   
+        @endif
+        
+ 
+   
+        <h2 class="text-center ">Detalhes do produto</h2>
+        <p class="text-center ">{{$produto->descricao}}
+        </p><br>
+        <table style="margin-left:auto;margin-right:auto;">
+            <thead>
+                <tr>
+                    <th>Característica</th>
+                    <th>Detalhe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Modelo</td>
+                    <td>Cardigã 7845</td>
+                </tr>
+                <tr>
+                    <td>Material</td>
+                    <td>Algodão e poliester</td>
+                </tr>
+                <tr>
+                    <td>Cores</td>
+                    <td>{{$produto->cor}}</td>
+                </tr>
+                <tr>
+                    <td>Capacidade</td>
+                    <td>{{$produto->capacidade}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+</div>
+    
+
+    
         </div>
     </div>
-    @include('inc.footer')
+    <br>
+    <footer>
+        <div class="container">
+            <img src="../img/tupper.png" height="100px"alt="Logo Mirror Fashion"/>
+
+            <ul class="social">
+                <li><a href="http://facebook.com/687487">Facebook</a></li>
+                <li><a href="http://twitter.com/748949">Twitter</a></li>
+        
+            </ul>
+        </div>
+  </footer>
 </body>
 </html>

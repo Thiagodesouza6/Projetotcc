@@ -1,4 +1,9 @@
 
+.formimagem{
+	width: 400px;
+ 
+  
+}
 .opacitytransform{
 	
 	opacity: 1;
@@ -123,8 +128,7 @@ margin-left:870px;
 	overflow: hidden;
 	background-color: #e9e9e9;
   }
-  
-  /* Style the links inside the navigation bar */
+
   .topnav a {
 	float: left;
 	display: block;
@@ -134,20 +138,18 @@ margin-left:870px;
 	text-decoration: none;
 	font-size: 17px;
   }
-  
-  /* Change the color of links on hover */
+
   .topnav a:hover {
 	background-color: #ddd;
 	color: black;
   }
   
-  /* Style the "active" element to highlight the current page */
+
   .topnav a.active {
 	background-color: #2196F3;
 	color: white;
   }
-  
-  /* Style the search box inside the navigation bar */
+
   .topnav input[type=text] {
 	float: right;
 	padding: 6px;
@@ -157,7 +159,7 @@ margin-left:870px;
 	font-size: 17px;
   }
   
-  /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+ 
   @media screen and (max-width: 600px) {
 	.topnav a, .topnav input[type=text] {
 	  float: none;
@@ -176,7 +178,7 @@ margin-left:870px;
   }
   
   .dropdown>.dropdown-toggle:active {
-	/*Without this, clicking will make it sticky*/
+	
 	  pointer-events: none;
   }
   
@@ -189,14 +191,14 @@ margin-left:870px;
 .img-zoom-lens {
   position: relative;
   border: 1px solid #d4d4d4;
-  /*set the size of the lens:*/
+  
   width: 40px;
   height: 40px;
 }
 
 .img-zoom-result {
   border: 1px solid #d4d4d4;
-  /*set the size of the result div:*/
+  
   width: 300px;
   height: 300px;
 }
@@ -219,11 +221,12 @@ margin-left:870px;
 }
 
 ol li{
-	opacity: 0.5;
+	opacity: 1;
+	transition: all 0.4s ease;
 }
 ol li:hover {
-	transform: scale(1.125); 
-	opacity:1;
+	transform: scale(1.025); 
+	opacity:0.8;
   }
 ol{
 	text-align: center;
@@ -241,16 +244,13 @@ body
     font-family: "Lucida Sans Unicode",	"Lucida	Grande", sans-serif;
 } 
 
-/*colocando no centro da pagina*/
 .container
 {
     margin: 0 auto;
   
 }
 
-/*Posicione o menu à direita e embaixo no header. Use position: absolute para isso. E não
-esqueça: se queremos posicioná-lo absolutamente com relação ao cabeçalho, 
-o cabeçalho precisa estar com position: relative.*/
+
 header{
     position: relative;
 }
@@ -261,10 +261,9 @@ header h1 img{/*alteraçao para mobile*/
     max-width: 50%;
 }
 
-/*A sacola também deve estar posicionada a direita e no topo. Use position , top e right para
-conseguir esse comportamento.*/
 
-.sacola	{	
+
+/*.sacola	{	
     background-image:	url(../img/sacola.png);	
     background-repeat:	no-repeat;	
     background-position: top right;
@@ -275,8 +274,8 @@ conseguir esse comportamento.*/
     position: absolute;
     top: 0;
 	right: 0;
-	display: none;/*alteraçao para mobile*/
-}
+	display: none;alteraçao para mobile
+}*/
 
 .menu-opcoes
 {
@@ -418,7 +417,7 @@ Conseguimos isso com a propriedade clear */
 }
 
 footer {
-	background-image: url(../img/fundo-rodape.png);
+	background-image: linear-gradient(1deg, rgb(41, 35, 78)  0%, darkslateblue 100%);
 	clear: both;
 	padding: 20px 0;
 }

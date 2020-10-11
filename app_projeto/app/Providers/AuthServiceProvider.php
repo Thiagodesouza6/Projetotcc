@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use App\User;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+         'App\Model' => 'App\Policies\PostPolicy',
     ];
 
     /**
@@ -21,9 +21,18 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(GateContract $gate)
     {
-        $this->registerPolicies();
+        $this->registerPolicies($gate);
+        $gate->define('produto.inserir', function (User $user ){
+                return $user->id =="1";
+        });
+        $gate->define('produto.alterar', function (User $user ){
+            return $user->id =="1";
+    });
+    $gate->define('listagem', function (User $user ){
+        return $user->id =="1";
+});
 
         //
     }

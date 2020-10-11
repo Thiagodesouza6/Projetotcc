@@ -91,7 +91,7 @@
             </div>
         </div>
     </div><br><br>
-<footer>@include('inc.footer')</footer>
+
 </body>
   </html>
 @extends('layouts.app')

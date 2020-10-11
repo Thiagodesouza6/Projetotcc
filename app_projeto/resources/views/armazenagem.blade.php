@@ -3,7 +3,7 @@
     <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
-		<title>Mirror Fashion</title>
+		
 		
 	  <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -50,56 +50,45 @@
            
                     
                     
-                 
-            <div class="card-group ">
+           
+          <!--  <div class="card-group ">
+                    @foreach ($produtos as $p)
                     <div class="card inner my-2">
-                        <a href="produtos.php"><img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
+                        <a href="/produtos/{{$p->id}}"><img class="card-img-top" src="../storage/{{$p->image}}" alt="Card image cap">
                       <div class="card-body text-center">
-                        <h5 class="card-title lead">Card title</h5>
-                        <p class="card-text lead">This is a wider card with s.</p>
+                        <h5 class="card-title lead">{{$p->nome}}</h5>
+                        <p class="card-text lead">{{$p->valor}}</p>
                             </a>
                       </div>
                     </div>
-                    <div class="card inner my-2">
-                        <a href="produtos.php"> <img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
+                    @endforeach
+                    
+                  </div> -->
+    <ol>
+          
+      
+        @foreach ($produtos as $p)      <li>
+                <div class="card inner my-2">
+                        <a href="/produtos/{{$p->id}}"><img class="card-img-top" src="../storage/{{$p->image}}" alt="Card image cap">
                       <div class="card-body text-center">
-                        <h5 class="card-title lead">Card title</h5>
-                        <p class="card-text lead">This card has supporting text below t.</p>
-                        <a href="produtos.html" class="btn btn-primary ">Go somewhere</a></a>
+                        <h5 class="card-title lead">{{$p->nome}}</h5>
+                        <p class="lead display-5">{{$p->valor}}</p>
+                            </a>
                       </div>
                     </div>
-                    <div class="card inner my-2">
-                        <a href="produtos.php">		
-                      <img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title lead">Fuzz Cardigan</h5>
-                        <p class="card-text lead"> por R$ 129,90</p><br>
-                        <a href="produtos.html" class="btn btn-primary ">Go somewhere</a></a>
-                     
-                    </div>
-                    </div>
-                  </div> 
-    <ol>
-        <li>
+                      </li> @endforeach
+        <!--
+              <li>
             
             <a href="{{ url('/produtos') }}">
                 <figure>
-                    <img src="img/produtos/miniatura1.png">
-                    <figcaption>Fuzz Cardigan por R$ 129,90</figcaption>
+                    <img src="../storage/{{$p->image}}">
+                    <figcaption>{{$p->nome}} por R$ {{$p->valor}}</figcaption>
                 </figure>
             </a>
         </li>
-        <li>
-                <div class="card inner my-2">
-                        <a href="produtos.html"><img class="card-img-top" src="img/produtos/miniatura1.png" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title lead">Card title</h5>
-                        <p class="lead display-5">This is a wider card wit.</p>
-                            </a>
-                      </div>
-                    </div>
-        </li>
-        <li>
+       
+            <li>
             <a href="produtos.html">
                 <figure>
                     <img src="img/produtos/miniatura3.png">
@@ -235,7 +224,7 @@
             </a>
         </li>
     </ol>
-    <button type="button">Mostrar mais</button>
+    <button type="button">Mostrar mais</button>-->
     </section>
 </div>
 </div>

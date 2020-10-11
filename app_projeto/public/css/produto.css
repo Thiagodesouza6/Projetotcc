@@ -181,9 +181,9 @@ output{
     line-height: 2;
 }
 .detalhes p{
-     margin: 1em 0;
+    
      font-size: 1em;
-     line-height: 1.5;
+   
      max-width: 36em;
 }
 @media (min-width:500px){
