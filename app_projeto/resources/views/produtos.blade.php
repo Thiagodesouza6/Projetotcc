@@ -1,22 +1,9 @@
-
-<!DOCTYPE html>
-<html >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Produto</title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
         <link href="{{ asset('css/produto.css') }}" rel="stylesheet">
-    
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-   
 </head>
-<body>
-        @include('inc.header')<br><br><br><br>
+@extends('layouts.app')
+
+@section('content')<br><br>
         <div class="row container">
   <div class="col-sm-5 "> <img  src="../storage/{{$produto->image}}" class="formimagem"></div>
   <div class="col-sm-6 detalhes ">  <h2 class="text-center ">{{$produto->nome}}</h2>
@@ -80,16 +67,10 @@
         </div>
     </div>
     <br>
-    <footer>
-        <div class="container">
-            <img src="../img/tupper.png" height="100px"alt="Logo Mirror Fashion"/>
-
-            <ul class="social">
-                <li><a href="http://facebook.com/687487">Facebook</a></li>
-                <li><a href="http://twitter.com/748949">Twitter</a></li>
-        
-            </ul>
-        </div>
-  </footer>
-</body>
-</html>
+    @endsection
+    @section('header')
+    @include('inc.header')
+    @endsection
+    @section('footer')
+    @include('inc.footer')
+    @endsection

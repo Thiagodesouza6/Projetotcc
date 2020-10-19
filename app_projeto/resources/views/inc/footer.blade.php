@@ -1,8 +1,7 @@
-<html>
-<body>
+
 <footer>
 			<div class="container">
-				<img src="img/tupper.png" height="70px" />
+				<img src="{{ asset('img/tupper.png') }}" height="70px" />
 
 				<ul class="social">
 					<li><a href="http://facebook.com/6666">Facebook</a></li>
@@ -11,4 +10,4 @@
 				</ul>
 			</div>
 		</footer>
-		</body></html>
+	

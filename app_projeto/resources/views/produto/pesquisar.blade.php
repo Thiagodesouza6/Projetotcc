@@ -1,13 +1,7 @@
-<html>
-<head>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
-</head>
-<body>
-        @include('inc.header')<br><br>
+@extends('layouts.app')
+
+@section('content')<br><br>
 	<div class="container">
 		@if(count($produtos) == 0)
             <div class="alert alert-danger mt-2">Nenhum produto encontrado com essa descrição!</div>
@@ -43,5 +37,10 @@
 	
        
     </div>
-</body>
-<html>
+    @endsection
+    @section('header')
+    @include('inc.header')
+    @endsection
+    @section('footer')
+    @include('inc.footer')
+    @endsection

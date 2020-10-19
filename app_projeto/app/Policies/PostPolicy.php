@@ -18,7 +18,7 @@ class PostPolicy
     {
         //
     }
-    public function updateProduto(User $user){
-        return $user->id == 1;
-    }
+   // public function updateProduto(User $user){
+    //    return $user->id == 1;
+    //}
 }

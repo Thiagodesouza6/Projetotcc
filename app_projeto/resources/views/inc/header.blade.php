@@ -1,8 +1,8 @@
-<html>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <title>Tupperware</title>
-<body>
-    <div id="app">
+
+   
+    
+
+    
         <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-custom-1">
            
             
@@ -35,7 +35,7 @@
                         @guest
                            
                             @if (Route::has('register'))
-                            <div class="row pr-4">  <li class="nav-item dropdown px-1  " >
+                            <div class="row pr-4">  <li class="nav-item dropdown  " >
                                     <a class="nav-link dropdown-toggle  text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-user"></i> <p >Sua conta</p>
                                     </a>
@@ -47,7 +47,7 @@
                                   </li> 
                                 </div><div class="row">
                                   <li class="nav-item ">
-                                        <a class="nav-link "  href="{{ route('login') }}">Lista de Desejos</a>
+                                        <a class="nav-link "  href="{{ route('login') }}">Carrinho</a>
                                       </li>
                                 
                               	  </div>
@@ -75,7 +75,7 @@
                             </li>
                         </div>
                             <div class="row">
-                            <li class="nav-item pr-4 ">
+                            <li class="nav-item pl-4 ">
                                     <a class="nav-link "  href="{{ url('/carrinho') }}">Carrinho</a>
                                   </li>
                                 </div>
@@ -85,29 +85,49 @@
                
             </div>
         </nav>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-purple py-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-purple py-2">
 
-
-            <div class="collapse navbar-collapse margem "  id="navbarSupportedContent">
+            <div class="collapse navbar-collapse "  id="navbarSupportedContent">
               <ul class="navbar-nav container  ">
-                      <li class="nav-item hoverbar px-3 " >
-                              <a class="nav-link" href="{{ url('/armazenagem') }}">Link</a>
+                      <li class="nav-item hoverbar col-sm px-3 " >
+                              <a class="nav-link" href="{{ url('/armazenagem') }}"> <p class="lead text-center"> Armazenagem</p></a>
                             </li>
                 
-                            <li class="nav-item hoverbar px-3  ">
-                                  <a class="nav-link" href="{{ url('/armazenagem') }}">Link</a>
+                            <li class="nav-item hoverbar  col-sm px-3  ">
+                                  <a class="nav-link" href="{{ url('/freezer') }}"> <p class="lead text-center">Freezer</p></a>
                                 </li>
-                                <li class="nav-item hoverbar px-3 ">
-                                      <a class="nav-link" href="{{ url('/armazenagem') }}">Link</a>
+                                <li class="nav-item hoverbar col-sm px-3 ">
+                                      <a class="nav-link" href="{{ url('/garrafa') }}"><p class="lead text-center">Garrafa</p></a>
                                     </li>
+                                    <li class="nav-item dropdown hoverbar col-sm px-3 " >
+                                        <a class="nav-link dropdown-toggle  text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                           <p class="lead text-center"> Coleção por Cor</p>
+                                        </a>
+                                        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ url('/azul') }}">Azul</a>
+                                            <a class="dropdown-item" href="{{ url('/rosa') }}">Rosa</a>
+                                            <a class="dropdown-item" href="{{ url('/verde') }}">Verde</a>
+                                            <a class="dropdown-item" href="{{ url('/preto') }}">Preto</a>
+                                      
+                                        </div>
+                                      </li> 
+                                   
+                                      <li class="nav-item dropdown hoverbar px-3 col-sm" >
+                                          <a class="nav-link dropdown-toggle  text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                             <p class="lead text-center">Outros</p>
+                                          </a>
+                                          <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                              <a class="dropdown-item " href="{{ url('/micro-ondas') }}">Micro-Ondas</a>
+                                        
+                                          </div>
+                                        </li> 
+                                        
+                                      
               </ul>
              
             </div>
             </nav>
-        <main >
-            @yield('content')
-        </main>
-    </div>
-</body>
- 
+        
+    
+
 

@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')<br><br>
-@if (  Auth::user()->email=='serginhodavila@hotmail.com')
+@if (  Auth::user()->id=='1')
 <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -46,6 +46,12 @@
         </div>
     </div>
 @endif
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br>
 
+@endsection
+@section('header')
+@include('inc.header')
+@endsection
+@section('footer')
+@include('inc.footer')
 @endsection

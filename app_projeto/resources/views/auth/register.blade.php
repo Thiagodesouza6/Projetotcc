@@ -1,22 +1,5 @@
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-      
-		<script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-   
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
-     
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-        <title>Checkout Mirror Fashion</title>
-    </head>
-    <body>@section('content')
+@section('content')
   
   <br><div class="container">
         <div class="row justify-content-center">
@@ -92,10 +75,15 @@
         </div>
     </div><br><br>
 
-</body>
-  </html>
 @extends('layouts.app')
 
 
 
+
+@endsection
+@section('header')
+@include('inc.header')
+@endsection
+@section('footer')
+@include('inc.footer')
 @endsection

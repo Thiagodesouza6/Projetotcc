@@ -21,6 +21,7 @@ class CreateProdutosTable extends Migration
             $table->decimal('valor',15,2);
             $table->string('image');
             $table->string('categoria');
+            $table->string('tag');
             $table->string('capacidade');
             $table->string('dimensoes');
             $table->string('cor');

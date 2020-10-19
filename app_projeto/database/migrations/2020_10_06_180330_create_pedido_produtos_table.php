@@ -21,9 +21,9 @@ class CreatePedidoProdutosTable extends Migration
                 $table->integer('produto_id')->unsigned();  
                 $table->decimal('valor',15,2)->default(0);
                 $table->timestamps();
-                $table->foreign('pedido_id')->references('id')->on('pedidos');
-                $table->foreign('produto_id')->references('id')->on('produtos');
-               
+                $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete('cascade');
+                $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+                
          
         });
     }

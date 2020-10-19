@@ -13,17 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/produtos/{id}', 'ProdutoController@produto_compra');
-Route::get('/checkout', function  () {
+Route::get('/checkout',['middleware'=>'auth.role', function  () {
     return view('checkout');
-});
+}]);
 Route::get('/carrinho', 'CarrinhoController@index')->name('carrinho.index');
 Route::get('/carrinho/adicionar', function() {
     return redirect()->route('carrinho.index');
@@ -35,12 +33,14 @@ Route::get('/carrinho/compras', 'CarrinhoController@compras')->name('carrinho.co
 Route::post('/carrinho/cancelar', 'CarrinhoController@cancelar')->name('carrinho.cancelar');
 
 
-Route::get('/armazenagem', 'ProdutoController@exibirprodutos');
-Route::get('/listagem', 'ProdutoController@listagem');
+Route::get('/armazenagem', 'ProdutoController@exibiramarzenagem'); 
+Route::get('/freezer', 'ProdutoController@exibirfreezer'); 
+Route::get('/garrafa', 'ProdutoController@exibirgarrafa');
+Route::get('/listagem', 'ProdutoController@listagem')->middleware('auth.role');
 Route::get('/produtos/pesquisar', 'ProdutoController@pesquisar');
 Route::post('/produtos/pesquisar', 'ProdutoController@pesquisar');
-Route::get('/produtos/inserir/{id}', 'ProdutoController@mostrar_inserir');
-Route::post('/produtos/inserir', 'ProdutoController@inserir');
-Route::get('/produtos/alterar/{id}', 'ProdutoController@mostrar_alterar');
-Route::post('/produtos/alterar', 'ProdutoController@alterar');
-Route::get('/produtos/excluir/{id}', 'ProdutoController@excluir');
+Route::get('/produtos/inserir/{id}', 'ProdutoController@mostrar_inserir')->middleware('auth.role');
+Route::post('/produtos/inserir', 'ProdutoController@inserir')->middleware('auth.role');
+Route::get('/produtos/alterar/{id}', 'ProdutoController@mostrar_alterar')->middleware('auth.role');
+Route::post('/produtos/alterar', 'ProdutoController@alterar')->middleware('auth.role');
+Route::get('/produtos/excluir/{id}', 'ProdutoController@excluir')->middleware('auth.role');

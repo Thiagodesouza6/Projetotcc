@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		
-		
-	  <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-   
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
-   
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    </head>
-    <body> 
-            @include('inc.header')<br><br>
+
+@extends('layouts.app')
+
+@section('content')<br><br>
 <br>
 <div class="container paineis my-5">
         <div class="row">
@@ -67,7 +52,7 @@
     <ol>
           
       
-        @foreach ($produtos as $p)      <li>
+        @forelse ($produtos as $p)      <li>
                 <div class="card inner my-2">
                         <a href="/produtos/{{$p->id}}"><img class="card-img-top" src="../storage/{{$p->image}}" alt="Card image cap">
                       <div class="card-body text-center">
@@ -76,17 +61,13 @@
                             </a>
                       </div>
                     </div>
-                      </li> @endforeach
+                      </li> 
+        @empty
+            <h1>  <div class="alert alert-danger">Não há produtos</div></h1>
+      
+                      @endforelse
+
         <!--
-              <li>
-            
-            <a href="{{ url('/produtos') }}">
-                <figure>
-                    <img src="../storage/{{$p->image}}">
-                    <figcaption>{{$p->nome}} por R$ {{$p->valor}}</figcaption>
-                </figure>
-            </a>
-        </li>
        
             <li>
             <a href="produtos.html">
@@ -231,9 +212,10 @@
 </div>
 
 <br>
-
-            
-@include('inc.footer')
-		
-    </body>
-</html>
+@endsection
+    @section('header')
+    @include('inc.header')
+    @endsection
+    @section('footer')
+    @include('inc.footer')
+    @endsection

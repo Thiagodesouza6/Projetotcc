@@ -3,21 +3,37 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Produto;
-
 use Request;
 use File;
+use Illuminate\Support\Facades\Storage;
+
 class ProdutoController extends Controller
 {
-    public function exibirprodutos()
-    {
-        
+    
+    public function exibiramarzenagem()
+    {   
         $produtos = Produto::all();
-      
+       
+        $produtos = Produto::where('categoria', 'like', '%'.'Armazenar'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
+    public function exibirfreezer()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('categoria', 'like', '%'.'Freezer'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    } 
+    public function exibirgarrafa()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('categoria', 'like', '%'.'Garrafa'.'%')->get();
         return view('armazenagem')->with('produtos', $produtos);
     }
     public function listagem()
     {
-        $this->authorize('listagem') ;
+   
         $produtos = Produto::all();
         
         
@@ -39,7 +55,7 @@ class ProdutoController extends Controller
    
    public function mostrar_inserir()
    {
-    $this->authorize('produto.inserir') ;
+  
 	   return view('produto.inserir');
    }
  
@@ -59,6 +75,7 @@ class ProdutoController extends Controller
         
         }
         $produto->categoria = Request::get('categoria');
+        $produto->tag = Request::get('tag');
         $produto->capacidade = Request::get('capacidade');
         $produto->dimensoes = Request::get('dimensoes');
         $produto->cor = Request::get('cor');
@@ -83,7 +100,7 @@ class ProdutoController extends Controller
 
 	public function mostrar_alterar($id)
     {
-        $this->authorize('produto.alterar') ;
+      
         $produto = Produto::find($id);
         return view('produto.alterar')->with('produto', $produto);
     }
@@ -96,13 +113,13 @@ class ProdutoController extends Controller
         $p->descricao = Request::get('descricao');
         $p->quantidade = Request::get('quantidade');
         $p->valor = Request::get('valor');
-        
-      
+        $p->image = Request::file('image')->store('');
         $p->categoria = Request::get('categoria');
+        $p->tag = Request::get('tag');
         $p->capacidade = Request::get('capacidade');
         $p->dimensoes = Request::get('dimensoes');
         $p->cor = Request::get('cor');
-        $p->image = Request::file('image');
+        
         $p->save();
 
         $mensagem = "Produto alterado com sucesso!";
@@ -112,7 +129,7 @@ class ProdutoController extends Controller
     public function excluir($id)    {        
           
         $produto = Produto::find($id);        
-                
+        Storage::delete($produto->image);
         $produto->delete();   
           
         $mensagem = "Produto excluído com sucesso!";        

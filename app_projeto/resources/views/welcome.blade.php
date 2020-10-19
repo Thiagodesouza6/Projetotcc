@@ -1,25 +1,7 @@
-<?php
 
-?>
-<!DOCTYPE html>
-<html>
-    <head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		<title>site teste</title>
-        <script type="text/javascript" src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-   
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
-        <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-        <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet"> 
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	 
-    </head>
-    <body >@include('inc.header')
+@extends('layouts.app')
+
+@section('content')
 			
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
@@ -80,58 +62,33 @@
             </section>
 		</div>-->	
 		<div class=" paineis my-5">
-				<section class="painel novidades"><br>
-					<p class="display-4 text-center lead">Novidades</p>
+				<section class="painel novidades  "><br>
+					<p class="display-4 text-center my-2">Novidades</p>
 					<br>
 					<div class="slider owl-carousel ">
 			
-				
-			<div class="card opacitytransform" height="250" ><a href="{{ url('/produtos') }}">
-			  <div class="img">
-	  <img src="img/produtos/miniatura1.png" alt="First slide"></div>
-	  <div class="content ">
-	  <div class="title">
-	  Eliana Maia</div> 
-	  <p class="text-center">
-	  Fuzz Cardigan por R$ 129,90</p></a>
-	  </div>
-	  </div>
-	  <div class="card opacitytransform"><a href="{{ url('/produtos') }}">
-			  <div class="img">
-	  <img src="img/produtos/miniatura3.png"  alt="Second slide"></div>
-	  <div class="content">
-	  <div class="title">
-	  Eliana Maia</div> 
-	  <p class="text-center">
-	  Fuzz Cardigan por R$ 129,90</p></a>
-	  </div>
-	  </div>
-	  <div class="card opacitytransform"><a href="{{ url('/produtos') }}">
-			  <div class="img">
-	  <img src="img/produtos/miniatura4.png"alt="Third slide"></div>
-	  <div class="content">
-	  <div class="title">
-	  Eliana Maia</div> 
-	  <p class="text-center">
-	  Fuzz Cardigan por R$ 129,90</p></a>
 	
-				
-	  </div>
-	  </div>
-	  <div class="card opacitytransform"><a href="{{ url('/produtos') }}">
-			  <div class="img">
-	  <img src="img/produtos/miniatura2.png" alt=""></div>
-	  <div class="content ">
-	  <div class="title">
-	  Eliana Maia</div> 
-	  <p class="text-center lead">
-	  Fuzz Cardigan por R$ 129,90</p></a>
-	
-				
-	  </div>
+							@foreach($produtos->where('tag', 'Novidade') as $produto)	
+
+							<div class="card opacitytransform"><a href="/produtos/{{$produto->id}}">
+									<div class="img">
+										<img src="../storage/{{$produto->image}}" ></div>
+										<div class="content">
+										<div class="title">
+											{{$produto->nome}}
+										</div>
+										
+							
+								<p class="text-center lead">
+									{{$produto->valor}}</p>
+								</div>
+								</a>
+							
+							</div>
+				  @endforeach
 	  
 	  </div>
-	  
+	  <br><br>
 	  </div>
 	  <script>
 			$(".slider").owlCarousel({
@@ -141,65 +98,77 @@
 			  autoplayHoverPause: true,
 			});
 		  </script>
-		  	<br><br><br>
+		  	<br>	
 			 
 			</section>
-			<br> <br> <br> <br> <br> <br>
-			<section class="painel mais-vendidos">
-				<p class="display-4 text-center">Mais Vendidos</p>
-				<div class="slider owl-carousel ">
+			<br>  
+			<div class=" paineis my-5">
+					<section class="painel  novidades ">
+						<p class="display-4 text-center py-4">Ofertas</p>
+						<div class="slider owl-carousel ">
+					
+						@forelse($produtos->where('tag', 'Promoção') as $produto)	
+		
+						<div class="card opacitytransform">
+							<a href="/produtos/{{$produto->id}}">
+								<div class="img">
+									<img src="../storage/{{$produto->image}}" ></div>
+									<div class="content">
+									<div class="title">
+										{{$produto->nome}}</div>
+									<p class="text-center lead">
+										{{$produto->valor}}
+									</p>
+									</div>
+							</a>
+						
+						</div>
+						@empty
+					<h1>  <div class="alert alert-danger">Não há produtos</div></h1>
+			  @endforelse
+			  </div>
+			  <br><br>
+			</div>
+			 
+			  <script>
+					$(".slider").owlCarousel({
+					  loop: true,
+					  autoplay: true,
+					  autoplayTimeout: 2000, //2000ms = 2s;
+					  autoplayHoverPause: true,
+					});
+				  </script>
+					  <br>
+					</section>
+					<br>
+			<div class=" paineis my-5">
+			<section class="painel mais-vendidos ">
+				<p class="display-4 text-center py-4">Mais Vendidos</p>
+				<div class="slider owl-carousel  ">
 			
+				@forelse($produtos->where('tag', 'Mais Vendidos') as $produto)	
+
+				<div class="card opacitytransform">
+					<a href="/produtos/{{$produto->id}}">
+						<div class="img">
+							<img src="../storage/{{$produto->image}}" ></div>
+							<div class="content">
+							<div class="title">
+								{{$produto->nome}}</div>
+							<p class="text-center lead">
+								{{$produto->valor}}
+							</p>
+							</div>
+					</a>
 				
-			<div class="card opacitytransform" height="250" ><a href="produtos.php">
-			  <div class="img">
-	  <img src="img/produtos/miniatura1.png" alt="First slide"></div>
-	  <div class="content ">
-				<div class="title">
-	  Briana Tozour</div>
-	  
-	  <p class="text-center">
-	  Lorem as cumque.</p>
-	 </a>
+				</div>
+				@empty
+            <h1>  <div class="alert alert-danger">Não há produtos</div></h1>
+	  @endforelse
 	  </div>
-	  </div>
-	  <div class="card opacitytransform"><a href="produtos.php">
-			  <div class="img">
-	  <img src="img/produtos/miniatura3.png"  alt="Second slide"></div>
-	  <div class="content">
-				<div class="title">
-	  Pricilla Preez</div>
-	
-	  <p class="text-center lead">
-	  Lorem unde voluptas cumque.</p>
-	</a>
-	  </div>
-	  </div>
-	  <div class="card opacitytransform"><a href="produtos.php">
-			  <div class="img">
-	  <img src="img/produtos/miniatura4.png"alt="Third slide"></div>
-	  <div class="content">
-				<div class="title">
-	  Eliana Maia</div> 
-	  <p class="text-center">
-	  Fuzz Cardigan por R$ 129,90</p></a>
-	
-				
-	  </div>
-	  </div>
-	  <div class="card opacitytransform"><a href="produtos.php">
-			  <div class="img">
-	  <img src="img/produtos/miniatura2.png" alt=""></div>
-	  <div class="content">
-				<div class="title">
-	  Eliana Maia</div> 
-	  <p class="text-center">
-	  Fuzz Cardigan por R$ 129,90</p></a>
-	
-				
-	  </div>
-	  </div>
-	 	
-	  </div>
+	  <br><br>
+	</div>
+	 
 	  <script>
 			$(".slider").owlCarousel({
 			  loop: true,
@@ -210,9 +179,13 @@
 		  </script>
 		  	<br>
 			</section>
-		</div>
 		
-@include('inc.footer')
 		
-    </body>
-</html>
+		@endsection
+		@section('header')
+		@include('inc.header')
+		@endsection
+		@section('footer')
+		@include('inc.footer')
+		@endsection
+		

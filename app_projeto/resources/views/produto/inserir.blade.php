@@ -1,10 +1,6 @@
-<html>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
-<body> 
-        @include('inc.header')<br><br>
+@extends('layouts.app')
+
+@section('content')<br><br>
     <div class="container">
         <h1 class="mt-2">Inserir produto</h1>
 		 @if(!empty($mensagem))
@@ -38,14 +34,29 @@
         </select>
             </div>
                           
-          
             <div class="form-group">
-                <label for="categoria">Categoria:<span class="text-danger">*</span> </label>
-                <input type="text" id="categoria" name="categoria" class="form-control" required>
-            </div>
+                <label for="categoria">Categoria:</label>
+        <select id="categoria" name="categoria" >
+        <option value="Armazenar">Armazenar</option>
+        <option value="Freezer">Freezer</option>
+        <option value="Garrafa">Garrafa</option>
+        <option value="Micro-Ondas">Micro-ondas</option>
+        
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="tag">Tag: </label>
+        <select id="tag" name="tag">
+        <option value="Nenhum">Nenhum</option>
+        <option value="Novidade">Novidade</option>
+        <option value="Mais Vendidos">Mais Vendidos</option>
+        <option value="Promoção">Promoção</option>
+        
+        </select>
+        </div>
             <div class="form-group">
                     <label for="dimensoes">Dimensões: <span class="text-danger">*</span></label>
-                    <input type="text" id="dimensoes" name="dimensoes" class="form-control" required>
+                    <input type="text" id="dimensoes" name="dimensoes" class="form-control" placeholder="comprimento x largura x altura (cm)"required>
                 </div>
                 <div class="form-group">
                         <label for="capacidade">Capacidade: <span class="text-danger">*</span></label>
@@ -59,6 +70,10 @@
             <input type="submit" class="btn btn-success mt-2" value="Inserir">
         </form>
     </div><br><br>
-   <footer> @include('inc.footer')</footer>
-</body>
-<html>
+    @endsection
+    @section('header')
+    @include('inc.header')
+    @endsection
+    @section('footer')
+    @include('inc.footer')
+    @endsection

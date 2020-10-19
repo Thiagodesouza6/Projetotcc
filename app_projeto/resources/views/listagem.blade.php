@@ -1,14 +1,9 @@
-<html>
-<head>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
-</head>
-<body>
-        @include('inc.header')<br><br>
-	<div class="container">
+
+@extends('layouts.app')
+
+@section('content')<br><br>
+	<div >
 		
             <table class="table mt-2 text-center">
                 <tr>
@@ -20,6 +15,7 @@
                     <th>Cor</th>
                     <th>Capacidade</th>
                     <th>Categoria</th>
+                    <th>Tag</th>
                     <th>Dimensões</th>
                 </tr>
                 @foreach ($produtos as $p)
@@ -32,6 +28,7 @@
                         <td>{{$p->cor}}</td>
                         <td>{{$p->capacidade}}</td>
                         <td>{{$p->categoria}}</td>
+                        <td>{{$p->tag}}</td>
                         <td>{{$p->dimensoes}}</td>
                         <td><a href="/produtos/excluir/{{$p->id}}"><button class="btn btn-danger">Excluir</button></a></td>
                         <td><a href="/produtos/alterar/{{ $p->id}}"><button class="btn btn-warning">Alterar</button></a></td>
@@ -42,5 +39,11 @@
             <div class="alert alert-success mt-2">{{$mensagem}}</div>
         @endif
     </div>
-</body>
-<html>
+    <br><br><br>
+    @endsection
+    @section('header')
+    @include('inc.header')
+    @endsection
+    @section('footer')
+    @include('inc.footer')
+    @endsection

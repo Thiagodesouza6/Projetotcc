@@ -7,7 +7,9 @@
     <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
-
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet"> 
+   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <head>
     <meta charset="utf-8">
@@ -32,6 +34,8 @@
     
 </head>
 <body>
-    @include('inc.header')
- @include('inc.footer')
+  @yield('header')
+  @yield('content')
+  @yield('footer')
+    
 </html>

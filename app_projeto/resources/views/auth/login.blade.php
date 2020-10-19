@@ -1,8 +1,4 @@
    
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 @extends('layouts.app')
 
 @section('content')
@@ -77,4 +73,10 @@
     </div>
 </div><br><br><br><br><br><br><br><br><br>
 
+@endsection
+@section('header')
+@include('inc.header')
+@endsection
+@section('footer')
+@include('inc.footer')
 @endsection

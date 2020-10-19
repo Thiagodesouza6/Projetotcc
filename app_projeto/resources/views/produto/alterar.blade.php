@@ -11,7 +11,7 @@
 </head>
 	<div class="container">
     <h1 class="mt-2">Alterar produto</h1>
-    <form action="/produtos/alterar" method="post" class="mt-2">
+    <form action="/produtos/alterar" method="post" class="mt-2"enctype="multipart/form-data">
         <input type="hidden" name="_token" value="{{{csrf_token()}}}">
         <div class="form-group">
             <label for="id">ID: <span class="text-danger">*</span></label>
@@ -38,7 +38,7 @@
        
     <div class="form-group">
               <label for="cor">Cor:</label>
- <select id="cor" name="cor" >
+ <select id="cor" name="cor" selected>
      <option value="Verde">Verde</option>
     <option value="Rosa">Rosa</option>
     <option value="Azul">Azul</option>
@@ -46,11 +46,27 @@
 </select>
     </div>
                   
-  
     <div class="form-group">
-        <label for="categoria">Categoria:<span class="text-danger">*</span> </label>
-        <input type="text" id="categoria" name="categoria" class="form-control"required value="{{$produto->categoria}}">
-    </div>
+        <label for="categoria">Categoria: </label>
+<select id="categoria" name="categoria" value="{{$produto->categoria}}">
+<option value="Armazenar">Armazenar</option>
+<option value="Freezer">Freezer</option>
+<option value="Garrafa">Garrafa</option>
+<option value="Micro-Ondas">Micro-ondas</option>
+
+</select>
+</div>
+<div class="form-group">
+    <label for="tag">Tag:</label>
+<select id="tag" name="tag" value="{{$produto->tag}}">
+<option value="Nenhum">Nenhum</option>
+<option value="Novidade">Novidade</option>
+<option value="Mais Vendidos">Mais Vendidos</option>
+<option value="Promoção">Promoção</option>
+
+</select>
+</div>
+   
     <div class="form-group">
             <label for="dimensoes">Dimensões: <span class="text-danger">*</span></label>
             <input type="text" id="dimensoes" name="dimensoes" class="form-control" required value="{{$produto->dimensoes}}">
@@ -61,7 +77,7 @@
             </div>
             <div class="form-group">
                     <label for="image">Imagem do produto: <span class="text-danger">*</span></label>
-                    <input type="file" class="form-control" name="image" value="" required value="{{$produto->image}}">
+                    <input type="file" class="form-control" name="image" value="{{$produto->image}}"required >
                   </div>
         <div>Os campos marcados com <span class="text-danger">*</span> não podem estar em branco.</div>
         <input type="submit" class="btn btn-success mt-2" value="Alterar">
