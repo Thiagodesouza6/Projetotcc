@@ -38,15 +38,15 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <a href="/carrinho"><button class="btn btn-secondary">Pedidos</button></a> 
                       
-                        {{ __('You are logged in! ' ) }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endif
-<br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 @endsection
 @section('header')

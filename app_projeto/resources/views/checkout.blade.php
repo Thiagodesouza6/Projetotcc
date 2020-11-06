@@ -1,105 +1,145 @@
-<?php
+@extends('layout')
+@section('pagina_titulo', 'COMPRAS' )
 
-?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/open-iconic-bootstrap.css">
-   
-    </head>
-    <body>
-    
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-       
-        <h1 class="display-4">Ótima escolha!</h1>
-        <p class="lead">Obrigado por comprar na mirror Fashion!
-            Preencha seus dados para efetivar a compra.
-        </p>
-    </div>
-</div>
+@section('pagina_conteudo')
+
 <div class="container">
-   
-<div class="card mb-3">
-    <div class="card-header">
-        <h2>Sua compra</h2>
+    <div class="row">
+        <h3>Minhas compras</h3>
+        @if (Session::has('mensagem-sucesso'))
+            <div class="card-panel green">{{ Session::get('mensagem-sucesso') }}</div>
+        @endif
+        @if (Session::has('mensagem-falha'))
+            <div class="card-panel red">{{ Session::get('mensagem-falha') }}</div>
+        @endif
+        <div class="divider"></div>
+        <div class="row col s12 m12 l12">
+            <h4>Compras concluídas</h4>
+            @forelse ($compras as $pedido)
+                <h5 class="col l6 s12 m6"> Pedido: {{ $pedido->id }} </h5>
+                <h5 class="col l6 s12 m6"> Criado em: {{ $pedido->created_at->format('d/m/Y H:i') }} </h5>
+                <form method="POST" action="{{ route('carrinho.cancelar') }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2"></th>
+                                <th>Produto</th>
+                                <th>Valor</th>
+                                <th>Desconto</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @php
+                            $total_pedido = 0;
+                        @endphp
+                        @foreach ($pedido->pedido_produtos_itens as $pedido_produto)
+                            @php
+                                $total_produto = $pedido_produto->valor - $pedido_produto->desconto;
+                                $total_pedido += $total_produto;
+                            @endphp
+                            <tr>
+                                <td class="center">
+                                    @if($pedido_produto->status == 'PA')
+                                        <p class="center">
+                                            <input type="checkbox" id="item-{{ $pedido_produto->id }}" name="id[]" value="{{ $pedido_produto->id }}" />
+                                            <label for="item-{{ $pedido_produto->id }}">Selecionar</label>
+                                        </p>
+                                    @else
+                                        <strong class="red-text">CANCELADO</strong>
+                                    @endif
+                                </td>
+                                <td>
+                                    <img width="100" height="100" src="{{ $pedido_produto->produto->imagem }}">
+                                </td>
+                                <td>{{ $pedido_produto->produto->nome }}</td>
+                                <td>R$ {{ number_format($pedido_produto->valor, 2, ',', '.') }}</td>
+                                <td>R$ {{ number_format($pedido_produto->desconto, 2, ',', '.') }}</td>
+                                <td>R$ {{ number_format($total_produto, 2, ',', '.') }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td><strong>Total do pedido</strong></td>
+                                <td>R$ {{ number_format($total_pedido, 2, ',', '.') }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button type="submit" class="btn-large red col l12 s12 m12 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Cancelar itens selecionados">
+                                        Cancelar
+                                    </button>   
+                                </td>
+                                <td colspan="3"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            @empty
+                <h5 class="center">
+                    @if ($cancelados->count() > 0)
+                        Neste momento não há nenhuma compra valida.
+                    @else
+                        Você ainda não fez nenhuma compra.
+                    @endif
+                </h5>
+            @endforelse
+        </div>
+        <div class="row col s12 m12 l12">
+            <div class="divider"></div>
+            <h4>Compras canceladas</h4>
+            @forelse ($cancelados as $pedido)
+                <h5 class="col l2 s12 m2"> Pedido: {{ $pedido->id }} </h5>
+                <h5 class="col l5 s12 m5"> Criado em: {{ $pedido->created_at->format('d/m/Y H:i') }} </h5>
+                <h5 class="col l5 s12 m5"> Cancelado em: {{ $pedido->updated_at->format('d/m/Y H:i') }} </h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Produto</th>
+                            <th>Valor</th>
+                            <th>Desconto</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $total_pedido = 0;
+                        @endphp
+                        @foreach ($pedido->pedido_produtos_itens as $pedido_produto)
+                            @php
+                                $total_produto = $pedido_produto->valor - $pedido_produto->desconto;
+                                $total_pedido += $total_produto;
+                            @endphp
+                        <tr>
+                            <td>
+                                <img width="100" height="100" src="{{ $pedido_produto->produto->imagem }}">
+                            </td>
+                            <td>{{ $pedido_produto->produto->nome }}</td>
+                            <td>R$ {{ number_format($pedido_produto->valor, 2, ',', '.') }}</td>
+                            <td>R$ {{ number_format($pedido_produto->desconto, 2, ',', '.') }}</td>
+                            
+                            <td>R$ {{ number_format($total_produto, 2, ',', '.') }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td><strong>Total do pedido</strong></td>
+                            <td>R$ {{ number_format($total_pedido, 2, ',', '.') }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            @empty
+                <h5 class="center">Nenhuma compra ainda foi cancelada.</h5>
+            @endforelse
+        </div>
     </div>
-    <div class="card-body">
-     
-<dl>
-    <img src="img/produtos/foto1-verde.png" alt="Fuzzy Cardigan" class="img-thumbnail mb">
-    <dt>Produto</dt>
-    <dd>Fuzzy Cardigan</dd>
 
-    <dt>Cor</dt>
-    <dd>Verde</dd>
-    <dt>Tamanho</dt>
-    <dd>40</dd>
-    <dt>Preço</dt>
-    <dd>R$ 129,90</dd>
-</dl>
 </div>
-</div>
-<form>
-    <fieldset>
-        <legend>Dados pessoais</legend>
-       
-        <div class="form-group">
-            <label for="nome">Nome completo</label>
-            <input type="text" class="form-control" id="nome" name="nome" autofocus>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <div class="input-group mb-3">
-                <div class="input-group-pretend">
-                    <span class="input-group-text">@</span>
-                </div>
-                <input type="email" class="form-control" id="email" name="email" placeholder="email@exemplo.com">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="cpf">CPF</label>
-            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00">
-        </div>
-        <div class="form-group custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="newsletter" value="sim" checked>
-            <label class="custom-control-label" for="newsletter">
-                Quero receber Newsletter da Mirror Fashion
-            </label> 
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend>Cartão de crédito</legend>
-        <div class="form-group">
-            <label for="numero-cartao">Número - CVV</label>
-            <input type="text" class="form-control" id="numero-cartao" name="numero-cartao">
-        </div>
-        <div class="form-group">
-                <div class="input-group mb-3">
-                        <div class="input-group-pretend">
-                            <label class="input-group-text" for="bandeira-cartao">Bandeira</label>
-                        </div>
-                        <select class="custom-select" id="bandeira-cartao">
-                            <option disabled selected>Selecione uma opção...</option>
-                            <option value="master">MasterCard</option>
-                            <option value="visa">VISA</option>
-                            <option value="amex">American Express</option>
-                        </select>
-                </div>            
-        </div>
-        <div class="form-group">
-            <label for="validade-cartao">Validade</label>
-            <input type="month" class="form-control" id="validade-cartao" name="validade-cartao">
-        </div>
-    </fieldset>
-    <button type="submit" class="btn btn-primary">
-        <span class="oi oi-tumb-up"></span>
-        Confirmar Pedido
-    </button>
-</form>
-</div>
-</body>
-</html>
+
+@endsection

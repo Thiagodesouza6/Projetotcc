@@ -22,8 +22,12 @@ class CreateProdutosTable extends Migration
             $table->string('image');
             $table->string('categoria');
             $table->string('tag');
+            $table->decimal('peso',15,2);
+            $table->decimal('largura',15,2);
+            $table->decimal('comprimento',15,2);
+            $table->decimal('altura',15,2);
             $table->string('capacidade');
-            $table->string('dimensoes');
+
             $table->string('cor');
             
         });

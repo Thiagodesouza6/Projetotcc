@@ -32,7 +32,7 @@ Route::post('/carrinho/concluir', 'CarrinhoController@concluir')->name('carrinho
 Route::get('/carrinho/compras', 'CarrinhoController@compras')->name('carrinho.compras');
 Route::post('/carrinho/cancelar', 'CarrinhoController@cancelar')->name('carrinho.cancelar');
 
-
+Route::post('/frete', 'CarrinhoController@frete'); 
 Route::get('/armazenagem', 'ProdutoController@exibiramarzenagem'); 
 Route::get('/freezer', 'ProdutoController@exibirfreezer'); 
 Route::get('/garrafa', 'ProdutoController@exibirgarrafa');

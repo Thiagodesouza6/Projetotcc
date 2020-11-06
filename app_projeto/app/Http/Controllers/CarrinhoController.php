@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Pedido;
 use App\Produto;
 use App\PedidoProduto;
+use App\User;
 
 
 class CarrinhoController extends Controller
@@ -41,10 +42,80 @@ class CarrinhoController extends Controller
     }*/
     function __construct()
     {
-        // obriga estar logado;
+        
         $this->middleware('auth');
     }
+    public function frete()
+    {
+        $req = Request();
+        $idproduto = $req->input('id');
+        $produto = Produto::find($idproduto);
+      
+        $pedidos = Pedido::where([
+  
+            'user_id' => Auth::id()
+            ])->get();
+           
+        
+        
+        if( !function_exists( 'calculaFrete' ))
+        {
+           function calculaFrete(
+              $cod_servico,
+              $cep_origem,  
+              $cep_destino, 
+              $peso,        
+              $altura,      
+              $largura,     
+              $comprimento,
+              $valor_declarado='0'
+           ){
+        
+              $cod_servico = strtoupper( $cod_servico );
+              if( $cod_servico == 'SEDEX10' ) $cod_servico = 40215 ; 
+              if( $cod_servico == 'SEDEXACOBRAR' ) $cod_servico = 40045 ; 
+              if( $cod_servico == 'SEDEX' ) $cod_servico =40010; 
+              if( $cod_servico == 'PAC' ){
+                  $cod_servico=41106;
+                } 
+       
+              $correios = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=".$cep_origem."&sCepDestino=".$cep_destino."&nVlPeso=".$peso."&nCdFormato=1&nVlComprimento=".$comprimento."&nVlAltura=".$altura."&nVlLargura=".$largura."&sCdMaoPropria=n&nVlValorDeclarado=".$valor_declarado."&sCdAvisoRecebimento=n&nCdServico=".$cod_servico."&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3";
+        
+              $xml = simplexml_load_file($correios);
+        
+              $_arr_ = array();
+              if($xml->cServico->Erro == '0'):
+                 $_arr_['codigo'] = $xml -> cServico -> Codigo ;
+                 $_arr_['valor'] = $xml -> cServico -> Valor ;
+                 $_arr_['prazo'] = $xml -> cServico -> PrazoEntrega .' Dias' ;
+                 // return $xml->cServico->Valor;
+                 return $_arr_ ; 
+              else:
+                 return false;
+              endif;
+           }
+        }
 
+            $origem = $_POST['origem'];
+            $destino = $_POST['destino'];
+            $peso = $_POST['peso'];
+            $altura = $_POST['altura'];
+            $largura = $_POST['largura'];
+            $comprimento = $_POST['comprimento'];
+            $servico = $_POST['servico'];
+            $_resultado = calculaFrete( 
+                $servico, 
+                $origem, 
+                $destino, 
+                $peso, 
+                $altura, $largura, $comprimento, 0 );
+                
+                return view('carrinho.index', compact('pedidos'))->with('produto', $produto)->with('_resultado', $_resultado);
+       
+        
+  }
+  
+  
     public function index()
     {
         $req = Request();
@@ -157,11 +228,11 @@ class CarrinhoController extends Controller
     public function concluir()
     {
         $this->middleware('VerifyCsrfToken');
-
+       
         $req = Request();
         $idpedido  = $req->input('pedido_id');
         $idusuario = Auth::id();
-
+        
         $check_pedido = Pedido::where([
             'id'      => $idpedido,
             'user_id' => $idusuario,
@@ -183,9 +254,10 @@ class CarrinhoController extends Controller
 
         PedidoProduto::where([
             'pedido_id' => $idpedido
-            ])->update([
-                'status' => 'PA'
-            ]);
+            ])//->update([
+                //'status' => 'PA'
+            //])
+            ;
             Pedido::where([
                 'id' => $idpedido
             ]);
@@ -197,7 +269,9 @@ class CarrinhoController extends Controller
 
     public function compras()
     {
-
+        $users=User::where([
+            'id'=>Auth::id()
+        ])->get();
         $compras = Pedido::where([
            
             'user_id' => Auth::id()
@@ -208,7 +282,7 @@ class CarrinhoController extends Controller
             'user_id' => Auth::id()
             ])->orderBy('updated_at')->get();
 
-        return view('carrinho.compras', compact('compras', 'cancelados'));
+        return view('carrinho.compras', compact('compras', 'cancelados','users'));
 
     }
 
@@ -350,6 +424,7 @@ class CarrinhoController extends Controller
         return redirect()->route('carrinho.index');
 
     }
+   
     public function excluir($id)    {        
           
         $produto = Produto::find($id);        

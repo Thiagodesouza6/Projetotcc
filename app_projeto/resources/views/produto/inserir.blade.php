@@ -13,8 +13,8 @@
                             <label for="nome">Nome: <span class="text-danger">*</span></label>
                             <input type="text" id="nome" name="nome" class="form-control"autofocus required> 
                         </div>
-                <label for="descricao">Descrição: <span class="text-danger">*</span></label>
-                <input type="text" id="descricao" name="descricao" class="form-control"  required>
+                <label for="descricao">Descrição: </label>
+                <input type="text" id="descricao" name="descricao" class="form-control" >
             </div>
             <div class="form-group">
                 <label for="quantidade">Quantidade: <span class="text-danger">*</span></label>
@@ -55,8 +55,20 @@
         </select>
         </div>
             <div class="form-group">
-                    <label for="dimensoes">Dimensões: <span class="text-danger">*</span></label>
-                    <input type="text" id="dimensoes" name="dimensoes" class="form-control" placeholder="comprimento x largura x altura (cm)"required>
+                    <label for="peso">Peso(Kg): <span class="text-danger">*</span></label>
+                    <input type="text" id="peso" name="peso" class="form-control"required>
+                </div>
+                <div class="form-group">
+                    <label for="altura">Altura(cm): <span class="text-danger">*</span></label>
+                    <input type="text" id="altura" name="altura" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="comprimento">Comprimento(cm): <span class="text-danger">*</span></label>
+                    <input type="text" id="comprimento" name="comprimento" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="largura">Largura(cm): <span class="text-danger">*</span></label>
+                    <input type="text" id="largura" name="largura" class="form-control" required>
                 </div>
                 <div class="form-group">
                         <label for="capacidade">Capacidade: <span class="text-danger">*</span></label>

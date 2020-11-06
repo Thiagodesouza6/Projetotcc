@@ -1,13 +1,7 @@
 
 <footer>
 			<div class="container">
-				<img src="{{ asset('img/tupper.png') }}" height="70px" />
-
-				<ul class="social">
-					<li><a href="http://facebook.com/6666">Facebook</a></li>
-					<li><a href="http://twitter.com/6666">Twitter</a></li>
-			
-				</ul>
+				<a href="https://api.whatsapp.com/send?phone=5516997319935&text=Contato%20com%20vendedor"><img src="{{ asset('img/whatsa.png') }}"class="rounded float-right"width="70px"></a>
 			</div>
 		</footer>
 	

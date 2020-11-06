@@ -1,14 +1,6 @@
+@extends('layouts.app')
 
-<html>
-<head>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/open-iconic-bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
-<title> Alterar produtos </title>
-	<meta charset = "utf-8">
-	<link href="../../css/bootstrap.css" rel="stylesheet">
-</head>
+@section('content')<br><br>
 	<div class="container">
     <h1 class="mt-2">Alterar produto</h1>
     <form action="/produtos/alterar" method="post" class="mt-2"enctype="multipart/form-data">
@@ -67,9 +59,21 @@
 </select>
 </div>
    
-    <div class="form-group">
-            <label for="dimensoes">Dimensões: <span class="text-danger">*</span></label>
-            <input type="text" id="dimensoes" name="dimensoes" class="form-control" required value="{{$produto->dimensoes}}">
+        <div class="form-group">
+            <label for="peso">Peso(Kg): <span class="text-danger">*</span></label>
+            <input type="text" id="peso" name="peso" class="form-control"required value="{{$produto->peso}}">
+        </div>
+        <div class="form-group">
+            <label for="altura">Altura(cm): <span class="text-danger">*</span></label>
+            <input type="text" id="altura" name="altura" class="form-control" required value="{{$produto->altura}}">
+        </div>
+        <div class="form-group">
+            <label for="comprimento">Comprimento(cm): <span class="text-danger">*</span></label>
+            <input type="text" id="comprimento" name="comprimento" class="form-control" required value="{{$produto->comprimento}}">
+        </div>
+        <div class="form-group">
+            <label for="largura">Largura(cm): <span class="text-danger">*</span></label>
+            <input type="text" id="largura" name="largura" class="form-control" required value="{{$produto->largura}}">
         </div>
         <div class="form-group">
                 <label for="capacidade">Capacidade: <span class="text-danger">*</span></label>
@@ -84,5 +88,11 @@
     </form>
 </div>
 	</div>
-</body>
-</html>
+    <br><br>
+    @endsection
+    @section('header')
+    @include('inc.header')
+    @endsection
+    @section('footer')
+    @include('inc.footer')
+    @endsection

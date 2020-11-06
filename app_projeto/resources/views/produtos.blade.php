@@ -5,7 +5,7 @@
 
 @section('content')<br><br>
         <div class="row container">
-  <div class="col-sm-5 "> <img  src="../storage/{{$produto->image}}" class="formimagem"></div>
+  <div class="col-sm-5 "> <img  src="../storage/{{$produto->image}}" class="img-fluid formimagem img-thumbnail mb"></div>
   <div class="col-sm-6 detalhes ">  <h2 class="text-center ">{{$produto->nome}}</h2>
      <p class="text-center ">{{$produto->valor}}R$</p>
    
@@ -41,12 +41,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Modelo</td>
-                    <td>Cardigã 7845</td>
+                    <td>Categoria</td>
+                    <td>{{$produto->categoria}}</td>
                 </tr>
                 <tr>
-                    <td>Material</td>
-                    <td>Algodão e poliester</td>
+                    <td>Dimensões</td>
+                    <td>{{$produto->dimensoes}}</td>
                 </tr>
                 <tr>
                     <td>Cores</td>

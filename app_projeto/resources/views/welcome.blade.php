@@ -11,13 +11,13 @@
 				</ol>
 				<div class="carousel-inner">
 				  <div class="carousel-item active">
-					<img class="d-block w-100" src="img/banner.jpg" height="500"alt="First slide">
+					<img class="d-block w-100 img-fluid" src="img/banner.jpg" height="560"alt="First slide">
 				  </div>
 				  <div class="carousel-item">
-					<img class="d-block w-100" src="img/banner.jpg"height="500" alt="Second slide">
+					<img class="d-block w-100 img-fluid" src="img/banner.jpg"height="560" alt="Second slide">
 				  </div>
 				  <div class="carousel-item">
-					<img class="d-block w-100" src="img/banner.jpg"height="500" alt="Third slide">
+					<img class="d-block w-100 img-fluid" src="img/banner.jpg"height="560" alt="Third slide">
 				  </div>
 				</div>
 				
@@ -30,37 +30,7 @@
 				  <span class="sr-only">Next</span>
 				</a>
 			  </div>
-			<!--<div class="container destaque">
-				<section class="busca">
-				<h2>Busca</h2>
-				<form>
-					<input type="search">
-					<button>Buscar</button>
-				</form>
-		  </section>
-
-			<section class="menu-departamentos">
-				<h2>Departamentos</h2>
-				<nav>
-					<ul>
-						<li><a href="#">Blusas e Camisas</a></li>
-						<li><a href="#">Calças</a></li>
-						<li><a href="#">Saias</a></li>
-						<li><a href="#">Vestidos</a></li>
-						<li><a href="#">Sapatos</a></li>
-						<li><a href="#">Bolsas e Carteiras</a></li>
-						<li><a href="#">Acessórios</a></li>
-					</ul>
-				</nav>
-			</section>
-            
-            <section class="banner-destaque">
-                <figure>
-					<img src="img/destaque-home.png" 
-					alt="Promoção: Big City Night">    
-                </figure>
-            </section>
-		</div>-->	
+			
 		<div class=" paineis my-5">
 				<section class="painel novidades  "><br>
 					<p class="display-4 text-center my-2">Novidades</p>

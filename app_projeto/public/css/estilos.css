@@ -1,8 +1,9 @@
 
 .formimagem{
 	width: 400px;
- 
-  
+}
+.imagemproduto{
+	width: 100px;
 }
 .opacitytransform{
 	
@@ -68,13 +69,15 @@
   transform: scale(0.9);
 }
 .hoverbar:hover{
-	background-color: #0faae7;
+	background-color: #370664;
 	transition: all 0.4s ease;
 	
 }
+.padding-5 {
+  padding-left: 17rem !important;
+}
 .margem{
 	margin: 0;
-    
     position: absolute;
     top: 50%;
     left: 50%;

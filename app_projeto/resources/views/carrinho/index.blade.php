@@ -10,12 +10,13 @@
             </div>
         @endif
         @if (Session::has('mensagem-falha'))
-            <div class="card-panel red">
-                <strong>{{ Session::get('mensagem-falha') }}</strong>
+            <div class="card-panel red text-center">
+                <strong><div class="alert alert-danger">{{ Session::get('mensagem-falha') }}</div></strong>
             </div>
         @endif
         @forelse ($pedidos as $pedido)
             <br><br><br><br>
+            <div class="table-responsive">
             <table class="table mt-2 text-center">
                 <tr>
                     <th></th>
@@ -25,43 +26,50 @@
                         <th>Valor Total</th>
                 </tr>
                 @php
+                  $total_quantidade2=0;
+                 $total_quantidade=0;
+                 $comprimento_total=0;
+                 $largura_total=0;
+                 $altura_total=0;
+                        $peso_total=0;
                         $total_pedido = 0;
                     @endphp
                     @foreach ($pedido->pedido_produtos as $pedido_produto)
-
+               
                     <tr>
                         <td>
                             <img width="150"  src="storage/{{ $pedido_produto->produto->image }}">
                         </td>
                         <td class="center-align">
                             <div class="center-align">
-                                    <form method="POST" id="form-remover-produto" action="{{ route('carrinho.remover') }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <input type="hidden" name="pedido_id">
-                                            <input type="hidden" name="produto_id">
-                                            <input type="hidden" name="item">
-                                            <button class="btn" onclick="carrinhoRemoverProduto({{ $pedido->id }}, {{ $pedido_produto->produto_id }}, 1 )"> 
-                                                 <i class="material-icons small">remove_circle_outline</i></button> 
-                                     
-                                        
-                                        </form>
+                                    @if ($pedido_produto->produto->quantidade-$pedido_produto->qtd<=0)
+                                    <div class="alert alert-danger mt-2">limite atingido</div>
+                                    @else
+                                    <form action="{{ route('carrinho.adicionar') }}" method="POST">   
+                                     <br>
+                                     <div class="d-flex justify-content-center">
+                                             {{ csrf_field() }}
+                                             <input type="hidden" name="id" value="{{  $pedido_produto->produto->id }}">
+                                             <button class="btn " >  <i class="material-icons small">add_circle_outline</i></button>  
+                                  
+                                 </div>
+                                 </form>
+                                    @endif
+                                    
                                     
                                 <span class="col l4 m4 s4"> {{ $pedido_produto->qtd }} </span>
                                    
-                                   @if ($pedido_produto->produto->quantidade-$pedido_produto->qtd<0)
-                                   <div class="alert alert-danger mt-2">limite atingido</div>
-                                   @else
-                                   <form action="{{ route('carrinho.adicionar') }}" method="POST">   
-                                    <br>
-                                    <div class="d-flex justify-content-center">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="id" value="{{  $pedido_produto->produto->id }}">
-                                            <button class="btn " >  <i class="material-icons small">add_circle_outline</i></button>  
+                                <form method="POST" id="form-remover-produto" action="{{ route('carrinho.remover') }}">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <input type="hidden" name="pedido_id">
+                                        <input type="hidden" name="produto_id">
+                                        <input type="hidden" name="item">
+                                        <button class="btn" onclick="carrinhoRemoverProduto({{ $pedido->id }}, {{ $pedido_produto->produto_id }}, 1 )"> 
+                                             <i class="material-icons small">remove_circle_outline</i></button> 
                                  
-                                </div>
-                                </form>
-                                   @endif
+                                    
+                                    </form>
                                
                             </div>
                           
@@ -70,10 +78,16 @@
                         <td>R$ {{ number_format($pedido_produto->produto->valor, 2, ',', '.') }}</td>
                         
                         @php
+                           $peso_total+=$pedido_produto->produto->peso;
+                           $altura_total+= $pedido_produto->produto->altura;
+                           $comprimento_total+=$pedido_produto->produto->comprimento;
+                           $largura_total+=$pedido_produto->produto->largura;
                             $total_produto = $pedido_produto->valores;
                             $total_pedido += $total_produto;
+                           $total_quantidade += $pedido_produto->produto->quantidade;
+                           $total_quantidade2 += $pedido_produto->qtd;
                         @endphp
-                        <td>R$ {{ $total_produto  }}</td>
+                        <td>R$ {{ number_format($total_produto, 2, ',', '.')   }}</td>
                         <td>
                                 <form method="POST" id="form-remover-produto" action="{{ route('carrinho.remover') }}">
                                         {{ csrf_field() }}
@@ -90,28 +104,76 @@
                     @endforeach
                 
             </table>
-      
-          
-            <div class="ml-auto p-2">
+        </div>
+            <div><form action="/frete" method="post">
+                {{ csrf_field() }}
+                <div class="row panel-body" align="left">
+              <div class="col-md-12">
+              
+              <div class="col-sm">
+                  <label>SERVIÇO</label>
+                    <select class="form-control" name="servico">
+                      <option value="SEDEX">SEDEX</option>
+                      <option value="PAC">PAC</option>
+                  </select>
+                </div>
+              
+              <div class="col-sm">
+              
+                    <input type="hidden" class="form-control" name="origem" id="cep-origem" value="14802251" />  				
+                    <input type="hidden" class="form-control" name="peso" id="peso" value="{{$peso_total}}"/>  
+                    <input type="hidden" class="form-control" name="altura" id="altura" value="{{$altura_total}}" />  
+                    <input type="hidden" class="form-control" name="largura" id="largura" value="{{$largura_total}}"/> 
+                    <input type="hidden" class="form-control" name="comprimento" id="comprimento" value="{{$comprimento_total}}" />  	
+              <div class="form-group">
+                  <label>CEP DESTINO</label>
+                    <input type="text" class="form-control" name="destino" id="cep-destino" />  				
+                </div>
                
+              
+              <div class="form-group">
+              <button class="btn btn-info">Calcular Frete</button>
+              </div>
+              @if(!empty($_resultado))
+              <div class="alert alert-success">Valor:{{$_resultado['valor']}}<p>Prazo:{{$_resultado['prazo']}}</p></div>
+              @endif  
+            </div>
+        </div>
+    </div>
+              </form>
+            </div>
+
+
+
+
+            <div class="ml-auto p-2 text-right">
+               
+               
+                
+                <strong class="col offset-l6 offset-m6 offset-s6 l4 m4 s4 right-align">Total do pedido: </strong>
+                <span class="col l2 m2 s2">R$ {{ number_format($total_pedido, 2, ',', '.') }}</span>
+                <br><br>
+                @if ($total_quantidade2>$total_quantidade)
+                <div class="alert alert-danger mt-2 text-center">Quantidade não disponível</div>
+                @else
                 <form method="POST" action="{{ route('carrinho.concluir') }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
                     <button type="submit" class="btn btn-success" data-position="top" data-delay="50" >
                         Concluir compra
                     </button>   
-                </form></div>
-                <div class="ml-auto p-2">
-                <strong class="col offset-l6 offset-m6 offset-s6 l4 m4 s4 right-align">Total do pedido: </strong>
-                <span class="col l2 m2 s2">R$ {{ number_format($total_pedido, 2, ',', '.') }}</span>
-            </div>
+                </form>
+                @endif
+             
+        </div>
+        </div>
         @empty
         <br><br><br><br><br>
             <p class="lead text-center">Não há nenhum pedido no carrinho</h5>
         @endforelse
     
-</div>
-</div>
+</div></div>
+
 
     <script type="text/javascript" src="{{ asset('js/carrinho.js') }}"></script>
 

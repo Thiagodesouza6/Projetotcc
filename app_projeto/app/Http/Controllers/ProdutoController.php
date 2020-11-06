@@ -77,9 +77,12 @@ class ProdutoController extends Controller
         $produto->categoria = Request::get('categoria');
         $produto->tag = Request::get('tag');
         $produto->capacidade = Request::get('capacidade');
-        $produto->dimensoes = Request::get('dimensoes');
+        $produto->peso = Request::get('peso');
+        $produto->largura= Request::get('largura');
+        $produto->comprimento = Request::get('comprimento');
+        $produto->altura = Request::get('altura');
         $produto->cor = Request::get('cor');
-
+      
       
         $produto->save();
 
@@ -117,7 +120,10 @@ class ProdutoController extends Controller
         $p->categoria = Request::get('categoria');
         $p->tag = Request::get('tag');
         $p->capacidade = Request::get('capacidade');
-        $p->dimensoes = Request::get('dimensoes');
+        $p->peso = Request::get('peso');
+        $p->largura= Request::get('largura');
+        $p->comprimento = Request::get('comprimento');
+        $p->altura = Request::get('altura');
         $p->cor = Request::get('cor');
         
         $p->save();
