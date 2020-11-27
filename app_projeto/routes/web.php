@@ -31,8 +31,12 @@ Route::delete('/carrinho/remover', 'CarrinhoController@remover')->name('carrinho
 Route::post('/carrinho/concluir', 'CarrinhoController@concluir')->name('carrinho.concluir');
 Route::get('/carrinho/compras', 'CarrinhoController@compras')->name('carrinho.compras');
 Route::post('/carrinho/cancelar', 'CarrinhoController@cancelar')->name('carrinho.cancelar');
+Route::get('/meuspedidos', 'PedidosController@exibirmeuspedidos')->name('pedido.exibirmeuspedidos');
+Route::post('/meuspedidos', 'PedidosController@compra')->name('pedido.compra');
+Route::get('/pedidos', 'PedidosController@exibirpedidos')->name('pedido.exibirpedidos')->middleware('auth.role');
+Route::get('/pedidos/{id}', 'PedidosController@apagarpedidos')->middleware('auth.role');
 
-Route::post('/frete', 'CarrinhoController@frete'); 
+Route::post('/carrinho', 'CarrinhoController@frete')->name('carrinho.frete'); 
 Route::get('/armazenagem', 'ProdutoController@exibiramarzenagem'); 
 Route::get('/freezer', 'ProdutoController@exibirfreezer'); 
 Route::get('/garrafa', 'ProdutoController@exibirgarrafa');
@@ -44,3 +48,7 @@ Route::post('/produtos/inserir', 'ProdutoController@inserir')->middleware('auth.
 Route::get('/produtos/alterar/{id}', 'ProdutoController@mostrar_alterar')->middleware('auth.role');
 Route::post('/produtos/alterar', 'ProdutoController@alterar')->middleware('auth.role');
 Route::get('/produtos/excluir/{id}', 'ProdutoController@excluir')->middleware('auth.role');
+Route::get('/editcontact{id}', 'ContatoBannerController@mostrar_contact')->middleware('auth.role');
+Route::post('/editcontact', 'ContatoBannerController@contact')->middleware('auth.role');
+Route::get('/editbanner{id}', 'ContatoBannerController@mostrar_editbanner')->middleware('auth.role');
+Route::post('/editbanner', 'ContatoBannerController@banner')->middleware('auth.role');

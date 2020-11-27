@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ __('Home') }}</div>
     
                     <div class="card-body">
                         @if (session('status'))
@@ -16,10 +16,16 @@
                             </div>
                         @endif
                         <br><br>
-                        <a href="/produtos/inserir/{id}"><button class="btn btn-success">Inserir Produtos</button></a>
-                        <a href="{{ url('/listagem') }}"><button class="btn btn-success">Listagem de Produtos</button></a>
                        
-                      
+                       
+                        <a href="{{ url('/listagem') }}"><button class="btn btn-success">Listagem de Produtos</button></a>
+                        @foreach ($banner as $b)
+                        <a href="/editbanner{{$b->id}}"><button class="btn btn-secondary">Editar banner</button></a> 
+                        @endforeach
+                        @foreach ($contatos as $c)
+                        <a href="/editcontact{{$c->id}}"><button class="btn btn-secondary">Editar Dados</button></a> 
+                        <a href="{{route('pedido.exibirpedidos')}}"><button class="btn btn-secondary">Pedidos</button></a> 
+                      @endforeach
                     </div>
                 </div>
             </div>
@@ -30,7 +36,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ __('Home') }}</div>
     
                     <div class="card-body">
                         @if (session('status'))
@@ -38,7 +44,8 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <a href="/carrinho"><button class="btn btn-secondary">Pedidos</button></a> 
+                        <a href="{{route('pedido.exibirmeuspedidos')}}"><button class="btn btn-secondary">Meus Pedidos</button></a> 
+                        
                       
                     </div>
                 </div>
@@ -53,5 +60,7 @@
 @include('inc.header')
 @endsection
 @section('footer')
+
 @include('inc.footer')
+
 @endsection

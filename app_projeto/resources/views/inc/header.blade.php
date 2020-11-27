@@ -172,17 +172,21 @@
             </nav>
 -->
             <nav class="navbar navbar-expand-md navbar-light bg-light">
-                <ul class="navbar-nav mr-auto">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                      <img src="{{ asset('img/tupper.png') }}"width="200px" >
-                    </a>
-                </ul>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse dual-collapse2 padding-5">
-                 
-            <form action="/produtos/pesquisar" method="post" class="form-inline">
+                <div class="col-md-12 align-items-center justify-content-between navbar-collapse collapse w-100 order-2 dual-collapse2">
+               
+          
+                    <ul class="navbar-nav  mr-auto">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                          <img src="{{ asset('img/MicrosoftTeams-image.png') }}"width="250px" >
+                        </a>
+                    </ul>
+                  
+                <ul class="nav justify-content-center mr-auto">
+                    <form action="/produtos/pesquisar" method="post" class="form-inline">
                       <div class="input-group col-auto">
                           <input type="hidden" name="_token" value="{{{csrf_token()}}}">
                           <input type="text" class="form-control" placeholder="Digite o que você procura"  id="nome" name="nome" >
@@ -193,10 +197,9 @@
                           </div>
                         </div>       
                   </form>
-                </div>
-                    
-               
-                <div class="navbar-collapse collapse w-100 order-2 dual-collapse2">
+                </ul>
+              
+  
                     <ul class="navbar-nav ml-auto">
                      
                           
@@ -207,14 +210,14 @@
                                 <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-user"></i> <p >Sua conta</p>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
                                   <a class="dropdown-item" href="{{ route('register') }}">{{ __('Cadastrar') }}</a>
                                   <a class="dropdown-item" href="{{ route('login') }}">{{ __('Entrar') }}</a>
                               
                                 </div>
                               </li> 
                           
-                              <li class="nav-item pl-4 px-3 pt-3">
+                              <li class="nav-item pt-3">
                                     <a class="nav-link text-center"  href="{{ route('login') }}">Carrinho</a>
                                   </li>
                             
@@ -226,8 +229,8 @@
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('/home') }}">Dashboard</a>
+                            <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/home') }}">Home</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -243,14 +246,15 @@
                         </li>
                     
                        
-                        <li class="nav-item pl-4 ">
+                        <li class="nav-item ">
                                 <a class="nav-link text-center"  href="{{ url('/carrinho') }}">Carrinho</a>
                               </li>
                            
                         
                     @endguest
                     </ul>
-                </div>
+              
+                     
             </nav>
             <nav class="navbar navbar-expand-lg navbar-dark bg-purple py-2">
 
@@ -283,7 +287,7 @@
                                               <a class="nav-link dropdown-toggle  text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                  <p class="lead text-center">Outros</p>
                                               </a>
-                                              <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                              <div class="dropdown-menu text-center " aria-labelledby="navbarDropdown">
                                                   <a class="dropdown-item " href="{{ url('/micro-ondas') }}">Micro-Ondas</a>
                                             
                                               </div>

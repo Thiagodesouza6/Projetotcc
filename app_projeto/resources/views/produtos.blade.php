@@ -6,8 +6,8 @@
 @section('content')<br><br>
         <div class="row container">
   <div class="col-sm-5 "> <img  src="../storage/{{$produto->image}}" class="img-fluid formimagem img-thumbnail mb"></div>
-  <div class="col-sm-6 detalhes ">  <h2 class="text-center ">{{$produto->nome}}</h2>
-     <p class="text-center ">{{$produto->valor}}R$</p>
+  <div class="col-sm-6 detalhes ">  <h2 class="text-center">{{$produto->nome}}</h2>
+     <p class="text-center ">R$ {{ number_format($produto->valor, 2, ',', '.')   }}</p>
    
     @if (Auth::check())
     <form action="{{ route('carrinho.adicionar') }}" method="POST">   
@@ -15,14 +15,14 @@
         <div class="d-flex justify-content-center">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{ $produto->id }}">
-                <button class="btn btn-success" >Comprar</button>  
+                <button class="btn btn-success" >Adicionar ao carrinho</button>  
      
     </div>
     </form>
         @else
         <form action="/login">
             <div class="d-flex justify-content-center">
-            <input type="submit" class="btn btn-success mt-2" value="Comprar"> </div>
+            <input type="submit" class="btn btn-success mt-2" value="Adicionar ao carrinho"> </div>
         </form>
    
         @endif
@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                     <td>Dimensões</td>
-                    <td>{{$produto->dimensoes}}</td>
+                    <td> {{number_format($produto->comprimento, 1, ',', '.') }}x{{number_format($produto->largura, 1, ',', '.') }}x{{number_format($produto->altura, 1, ',', '.') }}(cm)</td>
                 </tr>
                 <tr>
                     <td>Cores</td>

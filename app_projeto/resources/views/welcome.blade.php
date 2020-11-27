@@ -1,7 +1,12 @@
-
+@php
+	use App\banner;
+	$banner = banner::all();
+@endphp
 @extends('layouts.app')
 
 @section('content')
+		
+				
 			
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
@@ -10,17 +15,36 @@
 				  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 				</ol>
 				<div class="carousel-inner">
+						@forelse ($banner as $b)
 				  <div class="carousel-item active">
-					<img class="d-block w-100 img-fluid" src="img/banner.jpg" height="560"alt="First slide">
+					<img class="d-block w-100 img-fluid" src="../storage/{{$b->banner1}}" height="560">
 				  </div>
+				  @if (empty($b->banner2))
 				  <div class="carousel-item">
-					<img class="d-block w-100 img-fluid" src="img/banner.jpg"height="560" alt="Second slide">
-				  </div>
+						<img class="d-block w-100 img-fluid" src="../storage/{{$b->banner1}}" height="560"> 
+					  </div> 
+				 
+				  @else
 				  <div class="carousel-item">
-					<img class="d-block w-100 img-fluid" src="img/banner.jpg"height="560" alt="Third slide">
-				  </div>
-				</div>
+						<img class="d-block w-100 img-fluid" src="../storage/{{$b->banner2}}"height="560" >
+					  </div>   
+				  @endif
+				  @if (empty($b->banner3))
+				  <div class="carousel-item">
+						<img class="d-block w-100 img-fluid" src="../storage/{{$b->banner1}}" height="560"> 
+					  </div> 
 				
+				  @else
+				 
+					  <div class="carousel-item">
+							<img class="d-block w-100 img-fluid" src="../storage/{{$b->banner3}}"height="560" >
+						  </div>
+				  @endif
+				  
+				</div>
+				@empty
+				
+				@endforelse
 				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 				  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				  <span class="sr-only">Previous</span>
@@ -30,7 +54,7 @@
 				  <span class="sr-only">Next</span>
 				</a>
 			  </div>
-			
+			 
 		<div class=" paineis my-5">
 				<section class="painel novidades  "><br>
 					<p class="display-4 text-center my-2">Novidades</p>
@@ -50,7 +74,18 @@
 										
 							
 								<p class="text-center lead">
-									{{$produto->valor}}</p>
+									R$ {{ number_format($produto->valor, 2, ',', '.')   }}</p>
+								
+									<form action="{{ route('carrinho.adicionar') }}" method="POST">   
+										<br>
+										<div class="d-flex justify-content-center">
+												{{ csrf_field() }}
+												<input type="hidden" name="id" value="{{ $produto->id }}">
+												<button class="btn btn-success" >Adicionar ao carrinho</button>  
+									 
+									</div>
+									</form>
+									
 								</div>
 								</a>
 							
@@ -87,8 +122,19 @@
 									<div class="title">
 										{{$produto->nome}}</div>
 									<p class="text-center lead">
-										{{$produto->valor}}
+										R$ {{ number_format($produto->valor, 2, ',', '.')   }}
 									</p>
+									
+							<form action="{{ route('carrinho.adicionar') }}" method="POST">   
+								<br>
+								<div class="d-flex justify-content-center">
+										{{ csrf_field() }}
+										<input type="hidden" name="id" value="{{ $produto->id }}">
+										<button class="btn btn-success" >Adicionar ao carrinho</button>  
+							 
+							</div>
+							</form>
+								
 									</div>
 							</a>
 						
@@ -126,10 +172,23 @@
 							<div class="title">
 								{{$produto->nome}}</div>
 							<p class="text-center lead">
-								{{$produto->valor}}
+								R$ {{ number_format($produto->valor, 2, ',', '.')   }}
 							</p>
+							
+							<form action="{{ route('carrinho.adicionar') }}" method="POST">   
+								<br>
+								<div class="d-flex justify-content-center">
+										{{ csrf_field() }}
+										<input type="hidden" name="id" value="{{ $produto->id }}">
+										<button class="btn btn-success" >Adicionar ao carrinho</button>  
+							 
+							</div>
+							</form>
+								
+								
 							</div>
 					</a>
+					
 				
 				</div>
 				@empty

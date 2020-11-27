@@ -9,7 +9,7 @@
                <nav id="navbarVertical " class="navbar  navbar-dark ">
                    <nav class="nav nav-pills  flex-column">
                         <ul class="nav nav-pills    "id="pills-nav"role="tablist">
-                                <li class="nav-item px-2 " >
+                               <!-- <li class="nav-item px-2 " >
                                         <a class="nav-link active" id="nav-pills-01" data-toggle="pill"href="#nav-item-01">Link</a>
                                       </li>
                           
@@ -18,7 +18,7 @@
                                           </li>
                                           <li class="nav-item  px-2 ">
                                                 <a class="nav-link" id="nav-pills-01" data-toggle="pill"href="#nav-item-03">Link</a>
-                                              </li>
+                                              </li>-->
                         </ul>
                    </nav>
                    
@@ -57,8 +57,11 @@
                         <a href="/produtos/{{$p->id}}"><img class="card-img-top" src="../storage/{{$p->image}}" alt="Card image cap">
                       <div class="card-body text-center">
                         <h5 class="card-title lead">{{$p->nome}}</h5>
-                        <p class="lead display-5">{{$p->valor}}</p>
+                        <p class="lead display-5">R$ {{ number_format($p->valor, 2, ',', '.')   }}
+                        </p>
+                        
                             </a>
+                           
                       </div>
                     </div>
                       </li> 

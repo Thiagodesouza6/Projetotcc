@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\contatos;
+use App\banner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,9 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-	   
-	   
-        return view('home');
+        $contatos = contatos::all();
+        $banner = banner::all();
+        return view('home')->with('contatos', $contatos)->with('banner', $banner);
        
     }
    

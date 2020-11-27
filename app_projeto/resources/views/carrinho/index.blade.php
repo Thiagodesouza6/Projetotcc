@@ -105,7 +105,7 @@
                 
             </table>
         </div>
-            <div><form action="/frete" method="post">
+            <div><form action="{{ route('carrinho.frete') }}" method="post">
                 {{ csrf_field() }}
                 <div class="row panel-body" align="left">
               <div class="col-md-12">
@@ -127,7 +127,7 @@
                     <input type="hidden" class="form-control" name="comprimento" id="comprimento" value="{{$comprimento_total}}" />  	
               <div class="form-group">
                   <label>CEP DESTINO</label>
-                    <input type="text" class="form-control" name="destino" id="cep-destino" />  				
+                    <input type="text" class="form-control" name="destino" id="cep-destino" required/>  				
                 </div>
                
               
@@ -184,5 +184,6 @@
 @include('inc.header')
 @endsection
 @section('footer')
+
 @include('inc.footer')
 @endsection
