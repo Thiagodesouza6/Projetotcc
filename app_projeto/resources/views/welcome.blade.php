@@ -62,8 +62,36 @@
 					<div class="slider owl-carousel ">
 			
 	
-							@foreach($produtos->where('tag', 'Novidade') as $produto)	
-
+							@forelse($produtos->where('tag', 'Novidade') as $produto)	
+							@if ($produto->quantidade==0)
+							<div class="card opacitytransform soldout">
+								<a href="/produtos/{{$produto->id}}">
+									<div class="img">
+										<img src="../storage/{{$produto->image}}" ></div>
+										<div class="content">
+										<div class="title">
+											{{$produto->nome}}</div>
+										<p class="text-center lead">
+											R$ {{ number_format($produto->valor, 2, ',', '.')   }}
+										</p>
+										
+										<form action="{{ route('carrinho.adicionar') }}" method="POST">   
+											<br>
+											<div class="d-flex justify-content-center">
+													{{ csrf_field() }}
+													<input type="hidden" name="id" value="{{ $produto->id }}">
+													<p class="text-center">Esgotado</p>  
+										 
+										</div>
+										</form>
+											
+											
+										</div>
+								</a>
+								
+							
+							</div>
+							@else
 							<div class="card opacitytransform"><a href="/produtos/{{$produto->id}}">
 									<div class="img">
 										<img src="../storage/{{$produto->image}}" ></div>
@@ -90,7 +118,10 @@
 								</a>
 							
 							</div>
-				  @endforeach
+							@endif
+							@empty
+							<h1>  <div class="alert alert-danger">Não há produtos</div></h1>
+				  @endforelse
 	  
 	  </div>
 	  <br><br>
@@ -113,7 +144,35 @@
 						<div class="slider owl-carousel ">
 					
 						@forelse($produtos->where('tag', 'Promoção') as $produto)	
-		
+						@if ($produto->quantidade==0)
+						<div class="card opacitytransform soldout">
+							<a href="/produtos/{{$produto->id}}">
+								<div class="img soldout">
+									<img src="../storage/{{$produto->image}}" ></div>
+									<div class="content">
+									<div class="title">
+										{{$produto->nome}}</div>
+									<p class="text-center lead">
+										R$ {{ number_format($produto->valor, 2, ',', '.')   }}
+									</p>
+									
+									<form action="{{ route('carrinho.adicionar') }}" method="POST">   
+										<br>
+										<div class="d-flex justify-content-center">
+												{{ csrf_field() }}
+												<input type="hidden" name="id" value="{{ $produto->id }}">
+												<p class="text-center">Esgotado</p>  
+									 
+									</div>
+									</form>
+										
+										
+									</div>
+							</a>
+							
+						
+						</div>
+						@else
 						<div class="card opacitytransform">
 							<a href="/produtos/{{$produto->id}}">
 								<div class="img">
@@ -139,6 +198,7 @@
 							</a>
 						
 						</div>
+						@endif
 						@empty
 					<h1>  <div class="alert alert-danger">Não há produtos</div></h1>
 			  @endforelse
@@ -163,7 +223,35 @@
 				<div class="slider owl-carousel  ">
 			
 				@forelse($produtos->where('tag', 'Mais Vendidos') as $produto)	
-
+				@if ($produto->quantidade==0)
+				<div class="card opacitytransform soldout">
+					<a href="/produtos/{{$produto->id}}">
+						<div class="img">
+							<img src="../storage/{{$produto->image}}" ></div>
+							<div class="content">
+							<div class="title">
+								{{$produto->nome}}</div>
+							<p class="text-center lead">
+								R$ {{ number_format($produto->valor, 2, ',', '.')   }}
+							</p>
+							
+							<form action="{{ route('carrinho.adicionar') }}" method="POST">   
+								<br>
+								<div class="d-flex justify-content-center">
+										{{ csrf_field() }}
+										<input type="hidden" name="id" value="{{ $produto->id }}">
+										<p class="text-center">Esgotado</p>  
+							 
+							</div>
+							</form>
+								
+								
+							</div>
+					</a>
+					
+				
+				</div>
+				@else
 				<div class="card opacitytransform">
 					<a href="/produtos/{{$produto->id}}">
 						<div class="img">
@@ -191,6 +279,7 @@
 					
 				
 				</div>
+				@endif
 				@empty
             <h1>  <div class="alert alert-danger">Não há produtos</div></h1>
 	  @endforelse

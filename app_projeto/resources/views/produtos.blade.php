@@ -10,6 +10,10 @@
      <p class="text-center ">R$ {{ number_format($produto->valor, 2, ',', '.')   }}</p>
    
     @if (Auth::check())
+    @if ($produto->quantidade==0)
+    <br>
+    <p class="text-center lead">Esgotado</p>    
+    @else
     <form action="{{ route('carrinho.adicionar') }}" method="POST">   
         <br>
         <div class="d-flex justify-content-center">
@@ -19,6 +23,8 @@
      
     </div>
     </form>
+    @endif
+    
         @else
         <form action="/login">
             <div class="d-flex justify-content-center">

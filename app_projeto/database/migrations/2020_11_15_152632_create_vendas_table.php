@@ -19,14 +19,14 @@ class CreateVendasTable extends Migration
             $table->string('email');
             $table->string('datanascimento');
             $table->string('cpf');
-            $table->string('cep');
+            $table->string('cep')->nullable();
             $table->string('ruaenumero');
             $table->string('complemento')->nullable();
             $table->string('cidade');
             $table->string('estado');
             $table->string('valortotal');
             $table->string('numerotelefone');
-           
+            $table->string('prazo')->nullable();;
             $table->integer('venda_user_id')->unsigned(); 
             $table->timestamps();
           

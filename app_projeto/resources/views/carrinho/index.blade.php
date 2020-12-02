@@ -78,10 +78,10 @@
                         <td>R$ {{ number_format($pedido_produto->produto->valor, 2, ',', '.') }}</td>
                         
                         @php
-                           $peso_total+=$pedido_produto->produto->peso;
-                           $altura_total+= $pedido_produto->produto->altura;
-                           $comprimento_total+=$pedido_produto->produto->comprimento;
-                           $largura_total+=$pedido_produto->produto->largura;
+                           $peso_total+=$pedido_produto->produto->peso*$pedido_produto->qtd ;
+                           $altura_total+= $pedido_produto->produto->altura*$pedido_produto->qtd;
+                           $comprimento_total+=$pedido_produto->produto->comprimento*$pedido_produto->qtd;
+                           $largura_total+=$pedido_produto->produto->largura*$pedido_produto->qtd;
                             $total_produto = $pedido_produto->valores;
                             $total_pedido += $total_produto;
                            $total_quantidade += $pedido_produto->produto->quantidade;
@@ -121,9 +121,9 @@
               <div class="col-sm">
               
                     <input type="hidden" class="form-control" name="origem" id="cep-origem" value="14802251" />  				
-                    <input type="hidden" class="form-control" name="peso" id="peso" value="{{$peso_total}}"/>  
-                    <input type="hidden" class="form-control" name="altura" id="altura" value="{{$altura_total}}" />  
-                    <input type="hidden" class="form-control" name="largura" id="largura" value="{{$largura_total}}"/> 
+                    <input type="hidden"class="form-control" name="peso" id="peso" value="{{$peso_total}}"/>  
+                    <input type="hidden" class="form-control" name="altura" id="altura" value="{{$pedido_produto->produto->altura}}" />  
+                    <input type="hidden" class="form-control" name="largura" id="largura" value="{{$pedido_produto->produto->largura}}"/> 
                     <input type="hidden" class="form-control" name="comprimento" id="comprimento" value="{{$comprimento_total}}" />  	
               <div class="form-group">
                   <label>CEP DESTINO</label>
@@ -159,9 +159,58 @@
                 <form method="POST" action="{{ route('carrinho.concluir') }}">
                     {{ csrf_field() }}
                     <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
-                    <button type="submit" class="btn btn-success" data-position="top" data-delay="50" >
-                        Concluir compra
-                    </button>   
+                   
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Concluir Compra
+                          </button>
+              
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Insira o CEP para continuar</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="card mb-3">
+                                               
+                                               
+                                              <br>
+                                              <div class="text-left">
+                                                    <label>SERVIÇO</label>
+                                                      <select class="form-control" name="servico">
+                                                        <option value="SEDEX">SEDEX</option>
+                                                        <option value="PAC">PAC</option>
+                                                    </select>
+                                                
+                                                </div>
+                                                    <br>
+                                                    <div class="text-left">
+                                                      <input type="hidden" class="form-control" name="origem" id="cep-origem" value="14802251" />  				
+                                                      <input type="hidden" class="form-control" name="peso" id="peso" value="{{$peso_total}}"/>  
+                                                      <input type="hidden" class="form-control" name="altura" id="altura" value="{{$pedido_produto->produto->altura}}" />  
+                                                      <input type="hidden" class="form-control" name="largura" id="largura" value="{{$pedido_produto->produto->largura}}"/> 
+                                                      <input type="hidden" class="form-control" name="comprimento" id="comprimento" value="{{$comprimento_total}}" />  	
+                                                <div class="form-group">
+                                                    <label>CEP DESTINO</label>
+                                                      <input type="text" class="form-control" name="destino" id="cep-destino" required/>  				
+                                                  </div>
+                                                </div>
+                                                </div>
+                                                                             
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary" data-toggle="modal">
+                                      Confirmar 
+                                    </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  
                 </form>
                 @endif
              

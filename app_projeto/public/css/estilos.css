@@ -1,3 +1,6 @@
+.soldout{
+	opacity: 0.4;
+}
 .dropdown-menu-center {
 	right: auto;
 	left: 50%;

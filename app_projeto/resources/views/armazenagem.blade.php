@@ -52,19 +52,36 @@
     <ol>
           
       
-        @forelse ($produtos as $p)      <li>
-                <div class="card inner my-2">
-                        <a href="/produtos/{{$p->id}}"><img class="card-img-top" src="../storage/{{$p->image}}" alt="Card image cap">
-                      <div class="card-body text-center">
-                        <h5 class="card-title lead">{{$p->nome}}</h5>
-                        <p class="lead display-5">R$ {{ number_format($p->valor, 2, ',', '.')   }}
-                        </p>
-                        
-                            </a>
-                           
-                      </div>
-                    </div>
-                      </li> 
+        @forelse ($produtos as $p)  @if ($p->quantidade==0)
+        <li>
+            <div class="card inner my-2 soldout">
+                    <a href="/produtos/{{$p->id}}"><img class="card-img-top" src="../storage/{{$p->image}}" alt="Card image cap">
+                  <div class="card-body text-center">
+                    <h5 class="card-title lead">{{$p->nome}}</h5>
+                    <p class="lead display-5">Esgotado
+                    
+                        </a>
+                       
+                  </div>
+                </div>
+                  </li> 
+        @else
+        <li>
+            <div class="card inner my-2">
+                    <a href="/produtos/{{$p->id}}"><img class="card-img-top" src="../storage/{{$p->image}}" alt="Card image cap">
+                  <div class="card-body text-center">
+                    <h5 class="card-title lead">{{$p->nome}}</h5>
+                    <p class="lead display-5">R$ {{ number_format($p->valor, 2, ',', '.')   }}
+                    </p>
+                    
+                        </a>
+                       
+                  </div>
+                </div>
+                  </li> 
+        @endif
+            
+           
         @empty
             <h1>  <div class="alert alert-danger">Não há produtos</div></h1>
       

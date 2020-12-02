@@ -54,11 +54,23 @@ $contador=0;
                                             <td >{{ $pedido_produto->produto->nome }} </td>
                                             <td >{{ $pedido_produto->qtd}} </td>
                                             <td >R$ {{ number_format($total_produto, 2, ',', '.')}} </td>
-                                        </tr>
+                                      </tr>
                                         @endforeach
                     </table>
                                        <p class="text-right">Total do pedido:
-                                        R$ {{ number_format($total_pedido, 2, ',', '.')   }}+Frete </p>
+                                        R$ {{ number_format($total_pedido, 2, ',', '.')   }}+
+                                        @if(!empty($_resultado))
+                                        {{$_resultado['valor']}}(frete) = 
+                                        @php
+                                            $totalpedido=$_resultado['valor']+$total_pedido;
+                                        @endphp
+                                         {{ number_format($totalpedido, 2, ',', '.') }}
+                                        @else
+                                        @php
+                                            $totalpedido=$total_pedido;
+                                        @endphp
+                                        (Sem frete)
+                                        @endif  </p>
                                     
                                     </div>
                                     @empty
@@ -76,13 +88,8 @@ $contador=0;
           {{ csrf_field() }}
          
     <fieldset>
-     
-            <input type="hidden" class="form-control" name="origem" id="cep-origem" value="14802251" />  				
-            <input type="hidden" class="form-control" name="peso" id="peso" value="{{$peso_total}}"/>  
-            <input type="hidden" class="form-control" name="altura" id="altura" value="{{$altura_total}}" />  
-            <input type="hidden" class="form-control" name="largura" id="largura" value="{{$largura_total}}"/> 
-            <input type="hidden" class="form-control" name="comprimento" id="comprimento" value="{{$comprimento_total}}" />  
-        <input type="hidden" name="valortotal" value="{{ $total_pedido}}">
+        <input type="hidden" name="prazo" value="{{$_resultado['prazo']}}">
+        <input type="hidden" name="valortotal" value="{{$totalpedido}}">
         <legend><p class="lead text-center">Dados pessoais</p></legend>
         @foreach($users as $user)	    
         <input type="hidden" name="venda_user_id" value="{{$user->id}}">
@@ -115,6 +122,7 @@ $contador=0;
             <label for="datanascimento">Data de Nascimento <span class="text-danger">*</span></label>
             <input type="date" class="form-control" id="datanascimento" name="datanascimento" placeholder="" required>
         </div>
+        <legend><p class="lead text-center">Endereço de Entrega</p></legend>
         <div class="form-group"> 
             <label for="estado">Estado <span class="text-danger">*</span></label>
             <select class="form-control"  id="estado" name="estado" required>
@@ -156,17 +164,7 @@ $contador=0;
                 <input type="text" class="form-control" id="cidade" name="cidade" placeholder="" required>
                 
             </div>
-            <div class="form-group">
-            <label>SERVIÇO</label>
-            <select class="form-control" name="servico">
-              <option value="SEDEX">SEDEX</option>
-              <option value="PAC">PAC</option>
-          </select>
-        </div>
-        <div class="form-group">
-            <label for="cep">CEP <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="cep" name="cep" placeholder="" required>
-        </div>
+            
         <div class="form-group">
             <label for="ruaenumero">Endereço <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="ruaenumero" name="ruaenumero" placeholder="" required>
@@ -177,7 +175,7 @@ $contador=0;
         </div>
         <div class="form-group">
             <label for="numerotelefone">Número Telefone <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="numerotelefone" name="numerotelefone" placeholder="" required>
+            <input type="text" class="form-control" id="numerotelefone" name="numerotelefone" placeholder="(xx)xxxxx-xxxx" required>
         </div>
      
         @foreach ($pedido->pedido_produtos_itens as $pedido_produto)
