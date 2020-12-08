@@ -4,11 +4,17 @@
 @section('content')<br><br>
 
 
-@forelse ($vendas as $venda)
-<li>
+@forelse ($vendas->where('checked', 'em andamento')  as $venda)
+
 <div class="card mb-3 ">
         <div class="card-header">
                 <h2>Pedido</h2>
+                @if ($venda->checked=='finalizado')
+                <h2 class="text-right">Finalizado</h2>
+                @else
+                <h2 class="text-right">Em andamento</h2> 
+                @endif
+               
             </div>
             <div class="card-body table-responsive">
               @php
@@ -77,7 +83,7 @@
 
 
         </div>
-      </li>
+      
         @empty
         <div class="alert alert-danger"><p class="lead text-center">Não há pedidos</p></div>
         @endforelse

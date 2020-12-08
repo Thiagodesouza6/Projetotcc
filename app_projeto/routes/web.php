@@ -32,6 +32,8 @@ Route::post('/carrinho/concluir', 'CarrinhoController@concluir')->name('carrinho
 Route::get('/carrinho/compras', 'CarrinhoController@compras')->name('carrinho.compras');
 Route::post('/carrinho/cancelar', 'CarrinhoController@cancelar')->name('carrinho.cancelar');
 Route::get('/meuspedidos', 'PedidosController@exibirmeuspedidos')->name('pedido.exibirmeuspedidos');
+Route::get('/historico', 'PedidosController@exibirhistorico')->name('pedido.historico');
+Route::get('/concluidos', 'PedidosController@exibirconcluidos')->name('pedido.pedidosconcluidos');
 Route::post('/meuspedidos', 'PedidosController@compra')->name('pedido.compra');
 Route::get('/pedidos', 'PedidosController@exibirpedidos')->name('pedido.exibirpedidos')->middleware('auth.role');
 Route::get('/pedidos/{id}', 'PedidosController@apagarpedidos')->middleware('auth.role');
@@ -40,6 +42,17 @@ Route::post('/carrinho', 'CarrinhoController@frete')->name('carrinho.frete');
 Route::get('/armazenagem', 'ProdutoController@exibiramarzenagem'); 
 Route::get('/freezer', 'ProdutoController@exibirfreezer'); 
 Route::get('/garrafa', 'ProdutoController@exibirgarrafa');
+Route::get('/micro-ondas', 'ProdutoController@exibirmicroondas'); 
+Route::get('/preto', 'ProdutoController@exibirpreto'); 
+Route::get('/azul', 'ProdutoController@exibirazul');
+Route::get('/laranja', 'ProdutoController@exibirlaranja'); 
+Route::get('/amarelo', 'ProdutoController@exibiramarelo'); 
+Route::get('/rosa', 'ProdutoController@exibirrosa');
+Route::get('/verde', 'ProdutoController@exibirverde');
+Route::get('/roxo', 'ProdutoController@exibirroxo');
+Route::get('/branco', 'ProdutoController@exibirbranco');
+
+
 Route::get('/listagem', 'ProdutoController@listagem')->middleware('auth.role');
 Route::get('/produtos/pesquisar', 'ProdutoController@pesquisar');
 Route::post('/produtos/pesquisar', 'ProdutoController@pesquisar');

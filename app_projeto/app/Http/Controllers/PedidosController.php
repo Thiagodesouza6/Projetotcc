@@ -34,6 +34,7 @@ class PedidosController extends Controller
         $venda->complemento = $request->get('complemento');
         $venda->numerotelefone =  $request->get('numerotelefone');
         $venda->prazo =  $request->get('prazo');
+        $venda->checked =  $request->get('checked');
         $venda->save();
 
         $venda_id=$venda->id;
@@ -62,7 +63,7 @@ class PedidosController extends Controller
       
         $mensagem = "Pedido Finalizado!";
         $produtosvenda = produtosvenda::all();
-       // $produtos=$produtosvenda->produto()->first();//
+    
         $vendas = venda::all();
         return view('meuspedidos')->with('mensagem', $mensagem)
         ->with('vendas', $vendas)->with('produtosvenda', $produtosvenda)
@@ -73,7 +74,9 @@ class PedidosController extends Controller
               
         $venda = venda::find($id);        
         
-        $venda->delete();   
+        $venda->update([
+            'checked' => 'finalizado'
+        ]);   
           
         $mensagem = "Pedido excluído com sucesso!";        
              
@@ -81,21 +84,35 @@ class PedidosController extends Controller
         $produtosvenda = produtosvenda::all();   
         return view('pedidos')->with('mensagem', $mensagem)->with('vendas', $vendas)->with('produtosvenda', $produtosvenda);  
     }
+    public function exibirhistorico()
+    {
+        $produtosvenda=produtosvenda::all();
+        $produtos=Produto::all();
+           $vendas = venda::all();
+       
+               
+           $users=User::where([
+               'id'=>Auth::id()
+           ])->get();
+           $compras = venda::where([
+              
+               'venda_user_id' => Auth::id()
+               ])->orderBy('created_at')->get();
+   
+           $cancelados = Pedido::where([
+             
+               'user_id' => Auth::id()
+               ])->orderBy('updated_at')->get();
+     
+           return view('historico', compact('compras', 'cancelados','users','vendas','produtosvenda','produtos','prodvenda'));
+      
+    }
   public function exibirmeuspedidos()
     {
         $produtosvenda=produtosvenda::all();
      $produtos=Produto::all();
         $vendas = venda::all();
-      /*  $users = DB::table('users')
-            ->join('contacts', 'users.id', '=', 'contacts.user_id')
-            ->join('orders', 'users.id', '=', 'orders.user_id')
-            ->select('users.*', 'contacts.phone', 'orders.price')
-            ->get();
-        $users = DB::table('pedidos')
-            ->join('venda', 'venda_pedido_id', '=', 'contacts.user_id')
-            ->join('orders', 'users.id', '=', 'orders.user_id')
-            ->select('users.*', 'contacts.phone', 'orders.price')
-            ->get();*/
+    
             
         $users=User::where([
             'id'=>Auth::id()
@@ -109,7 +126,7 @@ class PedidosController extends Controller
           
             'user_id' => Auth::id()
             ])->orderBy('updated_at')->get();
-          //  $prodvenda= $produtosvenda->produto();
+        
         return view('meuspedidos', compact('compras', 'cancelados','users','vendas','produtosvenda','produtos','prodvenda'));
    
     }
@@ -120,7 +137,13 @@ class PedidosController extends Controller
         $vendas = venda::all();
         return view('pedidos',compact('produtos','vendas','produtosvenda'));
     }
-
+    public function exibirconcluidos()
+    {
+        $produtosvenda=produtosvenda::all();
+        $produtos = Produto::all();
+        $vendas = venda::all();
+        return view('pedidosconcluidos',compact('produtos','vendas','produtosvenda'));
+    }
 	
    
 }

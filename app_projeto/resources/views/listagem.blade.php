@@ -7,8 +7,7 @@
 		
             <table class="table mt-2 text-center">
                 <tr>
-                 <th></th>
-                 <th></th>
+                    <th>Id</th>
                     <th class="text-left">Nome</th>
                     <th>Quantidade</th>
                     <th>Valor</th>
@@ -18,13 +17,14 @@
                     <th>Categoria</th>
                     <th>Tag</th>
                     <th>Dimensões</th>
-                    <th>Id</th>
+                    
+                    <th></th>
+                 <th></th>
                 </tr>
                 @foreach ($produtos as $p)
                     <tr>
-                            <td><a href="/produtos/excluir/{{$p->id}}"><button class="btn btn-danger">Excluir</button></a></td>
-                            <td><a href="/produtos/alterar/{{ $p->id}}"><button class="btn btn-warning">Alterar</button></a></td>
-                    
+                            
+                        <td>{{$p->id}}</td>
                         <td class="text-left">{{$p->nome}}</td>
                         <td>{{$p->quantidade}}</td>
                         <td>{{$p->valor}}</td>
@@ -34,7 +34,9 @@
                         <td>{{$p->categoria}}</td>
                         <td>{{$p->tag}}</td>
                         <td>{{$p->comprimento}}x{{$p->largura}}x{{$p->altura}}(cm)</td>
-                        <td>{{$p->id}}</td>
+     
+                        <td><a href="/produtos/excluir/{{$p->id}}"><button class="btn btn-danger">Excluir</button></a></td>
+                            <td><a href="/produtos/alterar/{{ $p->id}}"><button class="btn btn-warning">Alterar</button></a></td>
                     </tr>
                 @endforeach
             </table>

@@ -1,4 +1,5 @@
 <script type="text/javascript" src="{{ asset('js/submit.js') }}"></script>
+<script src="{{asset('js/payment.js')}}"></script>
 @extends('layouts.app')
 
 @section('content')<br><br>
@@ -90,6 +91,7 @@ $contador=0;
     <fieldset>
         <input type="hidden" name="prazo" value="{{$_resultado['prazo']}}">
         <input type="hidden" name="valortotal" value="{{$totalpedido}}">
+        <input type="hidden" name="checked" value="em andamento">
         <legend><p class="lead text-center">Dados pessoais</p></legend>
         @foreach($users as $user)	    
         <input type="hidden" name="venda_user_id" value="{{$user->id}}">
@@ -187,31 +189,163 @@ $contador=0;
         @endforeach 
     </fieldset>
     <fieldset>
-        <legend>Cartão de crédito</legend>
-        <div class="form-group">
-            <label for="numero-cartao">Número - CVV</label>
-            <input type="text" class="form-control" id="numero-cartao" name="numero-cartao">
+        <h4 class="mb-3">Escolha forma de pagamento</h4>
+
+        <div class="custom-control custom-radio">
+            <input type="radio" name="paymentMethod" class="custom-control-input" id="boleto" value="boleto" onclick="tipoPagamento('boleto')">
+            <label class="custom-control-label" for="boleto">Boleto</label>
         </div>
-        <div class="form-group">
-                <div class="input-group mb-3">
-                        <div class="input-group-pretend">
-                            <label class="input-group-text" for="bandeira-cartao">Bandeira</label>
-                        </div>
-                        <select class="custom-select" id="bandeira-cartao">
-                            <option disabled selected>Selecione uma opção...</option>
-                            <option value="master">MasterCard</option>
-                            <option value="visa">VISA</option>
-                            <option value="amex">American Express</option>
-                        </select>
-                </div>            
+
+        <div class="custom-control custom-radio">
+            <input type="radio" name="paymentMethod" class="custom-control-input" id="creditCard" value="creditCard" onclick="tipoPagamento('creditCard')">
+            <label class="custom-control-label" for="creditCard">Cartão de Crédito</label>
         </div>
-        <div class="form-group">
-            <label for="validade-cartao">Validade</label>
-            <input type="month" class="form-control" id="validade-cartao" name="validade-cartao">
+
+       
+        <div class="custom-control custom-radio">
+            <input type="radio" name="paymentMethod" class="custom-control-input" id="eft" value="eft" onclick="tipoPagamento('eft')">
+            <label class="custom-control-label" for="eft">Débito Online</label>
         </div>
-    </fieldset>
-    <div>Os campos marcados com <span class="text-danger">*</span> não podem estar em branco.</div>
-    
+
+        <!-- Pagamento com débito online -->
+        <div class="mb-3 bankName">
+            <label class="bankName">Banco</label>
+            <select name="bankName" id="bankName" class="form-control select-bank-name bankName">
+
+            </select>
+        </div>
+
+        <!-- Pagamento com cartão de crédito -->
+        <input type="hidden" name="bandeiraCartao" id="bandeiraCartao">
+        <input type="hidden" name="valorParcelas" id="valorParcelas">
+        <input type="hidden" name="tokenCartao" id="tokenCartao">
+        <input type="hidden" name="hashCartao" id="hashCartao">
+        
+        <div class="mb-3 creditCard">
+            <label class="creditCard">Banco</label>
+            <div class="input-group">
+                <input type="text"  name="numCartao" class="form-control" id="numCartao">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bandeira-cartao creditCard">   </span>
+                </div>
+            </div>
+            <small id="numCartao" class="form-text text-muted">
+                Preencha para ver o parcelamento
+            </small>
+        </div>
+        
+        <div class="mb-3 creditCard">
+            <label class="creditCard">Quantidades de Parcelas</label>
+            <select name="qntParcelas" id="qntParcelas" class="form-control select-qnt-parcelas creditCard">
+
+            </select>
+        </div>
+
+        <div class="mb-3 creditCard">
+            <label class="creditCard">Nome do titular</label>
+            <input type="text" name="creditCardHolderName" class="form-control" id="creditCardHolderName" placeholder="Nome igual ao escrito no cartão" >
+            <small id="creditCardHolderName" class="form-text text-muted">
+                Como está gravado no cartão
+            </small>
+        </div>
+
+        <div class="row creditCard">
+            <div class="col-md-6 mb-3 creditCard">
+                <label class="creditCard">Mês de Validade</label>
+                <input type="text" name="mesValidade" id="mesValidade" maxlength="2" class="form-control creditCard">
+            </div>
+            <div class="col-md-6 mb-3 creditCard">
+                <label class="creditCard">Ano de Validade</label>
+                <input type="text" name="anoValidade" id="anoValidade" maxlength="4"  class="form-control creditCard">
+            </div>
+        </div>
+
+        <div class="mb-3 creditCard">                            
+            <label class="creditCard">CVV do cartão</label>
+            <input type="text" name="numCartao" class="form-control creditCard" id="cvvCartao" maxlength="3" >
+            <small id="cvvCartao" class="form-text text-muted creditCard">
+                Código de 3 digitos impresso no verso do cartão
+            </small>
+        </div>
+
+        <div class="row creditCard">
+            <div class="col-md-6 mb-3 creditCard">
+                <label class="creditCard">CPF do dono do Cartão</label>
+                <input type="text" name="creditCardHolderCPF" id="creditCardHolderCPF" placeholder="CPF sem traço" class="form-control creditCard">
+            </div>
+            <div class="col-md-6 mb-3 creditCard">
+                <label class="creditCard">Data de Nascimento</label>
+                <input type="text" name="creditCardHolderBirthDate" id="creditCardHolderBirthDate" placeholder="Data de Nascimento. Ex: 12/12/1912" class="form-control creditCard">
+            </div>
+        </div>
+
+        <h4 class="mb-3 creditCard">Endereço do titular do cartão</h4>
+        <div class="row creditCard">
+            <div class="col-md-9 mb-3 creditCard">
+                <label class="creditCard">Logradouro</label>
+                <input type="text" name="billingAddressStreet" id="billingAddressStreet" placeholder="Av. Rua" class="creditCard form-control">
+            </div>                            
+            <div class="col-md-3 mb-3 creditCard">
+                <label class="creditCard">Número</label>
+                <input type="text" name="billingAddressNumber" id="billingAddressNumber" placeholder="Número" class="creditCard form-control">
+            </div>
+        </div>
+        
+        <div class="mb-3 creditCard">
+            <label class="creditCard">Complemento</label>
+            <input type="text" name="billingAddressComplement" id="billingAddressComplement" placeholder="Complemento"  class="creditCard form-control">
+        </div>
+        
+       
+        
+        <div class="row creditCard">
+            <div class="col-md-5 mb-3 creditCard">
+                <label class="creditCard">Bairro</label>
+                <input type="text" name="billingAddressDistrict" id="billingAddressDistrict" placeholder="Bairro"  class="creditCard form-control">
+            </div>
+            <div class="col-md-5 mb-3 creditCard">
+                <label class="creditCard">Cidade</label>
+                <input type="text" name="billingAddressCity" id="billingAddressCity" placeholder="Cidade"  class="creditCard form-control">
+            </div>
+            <div class="col-md-2 mb-3 creditCard">
+                <label class="creditCard">Estado</label>
+                <select name="billingAddressState" class="custom-select d-block w-100 creditCard" id="billingAddressState">
+                    <option value="">Selecione</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP" selected>SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="creditCard">CEP</label>
+            <input type="text" name="billingAddressPostalCode" class="form-control creditCard" id="billingAddressPostalCode" placeholder="CEP sem traço" >
+        </div>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Confirmar Pedido

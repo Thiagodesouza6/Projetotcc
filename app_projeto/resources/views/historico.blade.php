@@ -16,7 +16,7 @@
     
 @endif
 
-@forelse ($vendas->where('venda_user_id', $idusuario)->where('checked', 'em andamento') as $venda)
+@forelse ($vendas->where('venda_user_id', $idusuario)->where('checked', 'finalizado') as $venda)
 
 <div class="card mb-3 col-sm">
         <div class="card-header">
@@ -41,7 +41,7 @@
                                     <li>Valor do pedido: R${{$venda->valortotal}}</li><br>
                                     <li>Cidade/Estado:{{$venda->cidade}}/{{$venda->estado}}</li><br> 
                                     <li>Endereço do cliente:{{$venda->ruaenumero}}</li><br>
-                                    <li>Prazo de entrega:{{$venda->prazo}}</li><br>
+                                    
                                     <li>Itens do pedido:<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$idvenda}}">
                                       Ver Produtos
                                         </button>
@@ -87,35 +87,7 @@
                                             </div>
                                           </div>
                                         </div> </li><br>
-                                    <li>Solicitar cancelamento do pedido: <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                      Solicitar cancelamento
-                                        </button>  
-                                  <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel"> Solicitar cancelamento</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                              <div class="card mb-3">
-                                                      <div class="card-header">
-                                                          <h2> Instrução para solicitar cancelamento </h2>
-                                                      </div>
-                                                      @foreach($contatos as $contato)
-                                                      <h2> Para solicitar cancelamento, entrar em contato via email: {{$contato->email}}</h2>
-                                                     @endforeach
-                                                                                      </div>
-                                      </div>
-                                      <div class="modal-footer">
-                                      
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div></li><br>
+                                   <br>
                                
                               </ul>
             </div>

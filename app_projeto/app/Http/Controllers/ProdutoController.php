@@ -9,7 +9,71 @@ use Illuminate\Support\Facades\Storage;
 
 class ProdutoController extends Controller
 {
+    public function exibirmicroondas()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('categoria', 'like', '%'.'Micro-ondas'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
+    public function exibirpreto()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('cor', 'like', '%'.'preto'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
+    public function exibirlaranja()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('cor', 'like', '%'.'laranja'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
+    public function exibiramarelo()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('cor', 'like', '%'.'amarelo'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
+    public function exibirazul()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('cor', 'like', '%'.'azul'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
     
+    public function exibirrosa()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('cor', 'like', '%'.'rosa'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
+    
+    public function exibirroxo()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('cor', 'like', '%'.'roxo'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
+    public function exibirbranco()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('cor', 'like', '%'.'branco'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
+    public function exibirverde()
+    {   
+        $produtos = Produto::all();
+       
+        $produtos = Produto::where('cor', 'like', '%'.'verde'.'%')->get();
+        return view('armazenagem')->with('produtos', $produtos);
+    }
     public function exibiramarzenagem()
     {   
         $produtos = Produto::all();

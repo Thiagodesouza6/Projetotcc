@@ -24,8 +24,10 @@
                         @endforeach
                         @foreach ($contatos as $c)
                         <a href="/editcontact{{$c->id}}"><button class="btn btn-secondary">Editar Dados</button></a> 
-                        <a href="{{route('pedido.exibirpedidos')}}"><button class="btn btn-secondary">Pedidos</button></a> 
+                        
                       @endforeach
+                      <a href="{{route('pedido.exibirpedidos')}}"><button class="btn btn-secondary">Pedidos</button></a> <br><br>
+                      <a href="{{route('pedido.pedidosconcluidos')}}"><button class="btn btn-secondary">Pedidos concluídos</button></a> 
                     </div>
                 </div>
             </div>
@@ -45,6 +47,7 @@
                             </div>
                         @endif
                         <a href="{{route('pedido.exibirmeuspedidos')}}"><button class="btn btn-secondary">Meus Pedidos</button></a> 
+                        <a href="{{route('pedido.historico')}}"><button class="btn btn-secondary">Histórico de compras</button></a> 
                         
                       
                     </div>

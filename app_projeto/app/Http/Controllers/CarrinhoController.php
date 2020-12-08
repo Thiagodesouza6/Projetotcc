@@ -12,34 +12,7 @@ use App\User;
 
 class CarrinhoController extends Controller
 {   
-   /* public function remover()
-    {
-        $this->middleware('VerifyCsrfToken');
-
-        $req = Request();
-        $idpedido= $req->input('pedido_id');
-        $idusuario = Auth::id();
-
-        $idproduto          = $req->input('produto_id');
-        $remove_apenas_item = (boolean)$req->input('item');
-    
-
-        $idpedido = Pedido::consultaId([
-            'id'      => $idpedido,
-            'user_id' => $idusuario,
-           
-            ]);
-    $pedido_produtos = PedidoProduto::where([
-        'pedido_id' => $idpedido,
-        
-    ])->get();
-    $pedido_produtos->qtd = $pedido_produtos->qtd-1;
-
-    $req->session()->flash('mensagem-sucesso', 'Produto removido do carrinho com sucesso!');
-
-    return redirect()->route('carrinho.index');
-
-    }*/
+   
     function __construct()
     {
         
@@ -88,7 +61,7 @@ class CarrinhoController extends Controller
                  $_arr_['codigo'] = $xml -> cServico -> Codigo ;
                  $_arr_['valor'] = $xml -> cServico -> Valor ;
                  $_arr_['prazo'] = $xml -> cServico -> PrazoEntrega .' Dias' ;
-                 // return $xml->cServico->Valor;
+               
                  return $_arr_ ; 
               else:
                  return false;
@@ -254,9 +227,7 @@ class CarrinhoController extends Controller
 
         PedidoProduto::where([
             'pedido_id' => $idpedido
-            ])//->update([
-                //'status' => 'PA'
-            //])
+            ])
             ;
             Pedido::where([
                 'id' => $idpedido
@@ -291,7 +262,7 @@ class CarrinhoController extends Controller
                      $_arr_['codigo'] = $xml -> cServico -> Codigo ;
                      $_arr_['valor'] = $xml -> cServico -> Valor ;
                      $_arr_['prazo'] = $xml -> cServico -> PrazoEntrega .' Dias' ;
-                     // return $xml->cServico->Valor;
+                   
                      return $_arr_ ; 
                   else:
                      return false;

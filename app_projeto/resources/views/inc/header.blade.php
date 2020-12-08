@@ -274,12 +274,16 @@
                                             <a class="nav-link dropdown-toggle  text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                <p class="lead text-center"> Coleção por Cor</p>
                                             </a>
-                                            <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                                            <div class="dropdown-menu text-center dropdown-menu-center" aria-labelledby="navbarDropdown">
                                                 <a class="dropdown-item" href="{{ url('/azul') }}">Azul</a>
                                                 <a class="dropdown-item" href="{{ url('/rosa') }}">Rosa</a>
                                                 <a class="dropdown-item" href="{{ url('/verde') }}">Verde</a>
                                                 <a class="dropdown-item" href="{{ url('/preto') }}">Preto</a>
-                                          
+                                                <a class="dropdown-item" href="{{ url('/branco') }}">Branco</a>
+                                                <a class="dropdown-item" href="{{ url('/amarelo') }}">Amarelo</a>
+                                                <a class="dropdown-item" href="{{ url('/laranja') }}">Laranja</a>
+                                                <a class="dropdown-item" href="{{ url('/roxo') }}">Roxo</a>
+                                         
                                             </div>
                                           </li> 
                                        
@@ -287,8 +291,10 @@
                                               <a class="nav-link dropdown-toggle  text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                  <p class="lead text-center">Outros</p>
                                               </a>
-                                              <div class="dropdown-menu text-center " aria-labelledby="navbarDropdown">
+                                              <div class="dropdown-menu text-center dropdown-menu-center" aria-labelledby="navbarDropdown">
                                                   <a class="dropdown-item " href="{{ url('/micro-ondas') }}">Micro-Ondas</a>
+                                                  <a class="dropdown-item " href="{{ url('/geladeira') }}">Geladeira</a>
+                                                  <a class="dropdown-item " href="{{ url('/preparacao') }}">Preparação</a>
                                             
                                               </div>
                                             </li> 

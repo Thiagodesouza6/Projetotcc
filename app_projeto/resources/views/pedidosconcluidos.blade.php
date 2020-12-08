@@ -1,31 +1,20 @@
-@php
 
-	use App\contatos;
-	$contatos = contatos::all();
-
-    $idusuario= Auth::user()->id;
-@endphp
 @extends('layouts.app')
 
 @section('content')<br><br>
-@if (!empty($mensagem))
-<div class="alert alert-success"><p class="lead text-center">{{$mensagem}}</p> @if(!empty($_resultado))
-  <p class="lead text-center"> Valor do frete:{{$_resultado['valor']}}</p><p  class="lead text-center">Prazo:{{$_resultado['prazo']}}</p>
-    @endif </div> 
-@else
-    
-@endif
 
-@forelse ($vendas->where('venda_user_id', $idusuario)->where('checked', 'em andamento') as $venda)
 
-<div class="card mb-3 col-sm">
+@forelse ($vendas->where('checked', 'finalizado') as $venda)
+
+<div class="card mb-3 ">
         <div class="card-header">
-                <h2>Meu Pedido</h2>
+                <h2>Pedido</h2>
                 @if ($venda->checked=='finalizado')
                 <h2 class="text-right">Finalizado</h2>
                 @else
                 <h2 class="text-right">Em andamento</h2> 
                 @endif
+               
             </div>
             <div class="card-body table-responsive">
               @php
@@ -36,12 +25,12 @@
                   <li>Número registrado: {{$venda->numerotelefone}}</li><br>
                   <li>Email do cliente: {{$venda->email}}</li><br>
                                     <li>Nome do cliente: {{$venda->nome}}</li><br>
-                                   
+                                    <li>Data de nascimento: {{$venda->datanascimento}}</li><br>
                                     <li>Data do pedido {{$venda->created_at}}</li><br>
                                     <li>Valor do pedido: R${{$venda->valortotal}}</li><br>
                                     <li>Cidade/Estado:{{$venda->cidade}}/{{$venda->estado}}</li><br> 
                                     <li>Endereço do cliente:{{$venda->ruaenumero}}</li><br>
-                                    <li>Prazo de entrega:{{$venda->prazo}}</li><br>
+              
                                     <li>Itens do pedido:<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$idvenda}}">
                                       Ver Produtos
                                         </button>
@@ -87,42 +76,14 @@
                                             </div>
                                           </div>
                                         </div> </li><br>
-                                    <li>Solicitar cancelamento do pedido: <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                      Solicitar cancelamento
-                                        </button>  
-                                  <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel"> Solicitar cancelamento</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                              <div class="card mb-3">
-                                                      <div class="card-header">
-                                                          <h2> Instrução para solicitar cancelamento </h2>
-                                                      </div>
-                                                      @foreach($contatos as $contato)
-                                                      <h2> Para solicitar cancelamento, entrar em contato via email: {{$contato->email}}</h2>
-                                                     @endforeach
-                                                                                      </div>
-                                      </div>
-                                      <div class="modal-footer">
                                       
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div></li><br>
                                
                               </ul>
             </div>
 
 
         </div>
-    
+      
         @empty
         <div class="alert alert-danger"><p class="lead text-center">Não há pedidos</p></div>
         @endforelse

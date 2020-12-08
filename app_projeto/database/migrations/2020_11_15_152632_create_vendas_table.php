@@ -26,7 +26,8 @@ class CreateVendasTable extends Migration
             $table->string('estado');
             $table->string('valortotal');
             $table->string('numerotelefone');
-            $table->string('prazo')->nullable();;
+            $table->string('prazo')->nullable();
+            $table->string('checked');
             $table->integer('venda_user_id')->unsigned(); 
             $table->timestamps();
           
